@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>System settings</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+<div class="container">
+    <br>
+    <a style="    padding-left: 12px;
+    outline-style: solid;
+    margin-left: 62px" href="index.html">Click here for Data structure &nbsp;&nbsp;</a>
+ <h3 style="font-weight: bolder;color:black;">Object Oriented Programming In Java
+    <h3>Index</h3>
+    <a href="#palindrome">1. Palindrome</a> <br>
+    <a href="#matrixmultiplication">2. Matrix Multiplication</a> <br>
+    <a href="#frequencycount">3. Frequency Count</a> <br>
+    <a href="#exception">4. Exception Handling</a> <br>
+    <a href="#garbage">5. Garbage Collection</a> <br>
+    <a href="#copy">6. Copy File</a> <br>
+    <a href="#abstract">7. Abstract class</a> <br>
+    <a href="#employee">8. Inheritance : Employee</a> <br>
+    <a href="#tokenizer">9. String Tokenizer</a> <br>
+    <a href="#thread">10. Thread Synchronization</a> <br>
+    <a href="#multithread">11. Multithread</a> <br>
+    <a href="#database">12. Database</a> <br>
+    <br>
+<h3 id="palindrome">Palindrome</h3>
+
+<pre>
+
+  import java.util.Scanner;
+
+
+  public class Palindrome {
+  public static void main(String args[]){
+      String orginal,reverse="";
+      Scanner sc=new Scanner(System.in);
+      System.out.println("Enter a String or Number to check palindome:");
+      orginal=sc.nextLine();
+      int length=orginal.length();
+      for(int i=length-1;i>=0;i--)
+      
+          reverse=reverse+orginal.charAt(i);
+          if(orginal.equals(reverse))
+          
+              System.out.println("Entered string/Number is palindrome");
+          
+          else
+              System.out.println("Not palindrome");
+          
+      
+  }
+  }
+  
+</pre>
+</div>
+
+<div class="container">
+  <h3 id="matrixmultiplication">Matrix multiplication</h3>
+  <pre>
+    import java.util.Scanner;
+    
+    
+    public class MultidimentionalArray {
+        public static void main(String[] args) {
+                   Scanner sc=new Scanner(System.in);
+            System.out.println("Enter no Rows:");
+            int row=sc.nextInt();
+            System.out.println("Enter no Column:");
+            int column=sc.nextInt();
+            if(row!=column)
+            {
+                System.out.println("Matrix multiplication not possible..");
+                System.exit(0);
+            }
+            int m1[][]=new int[row][column];
+            int m2[][]=new int [row][column];
+            int m3[][]=new int [row][column];
+            
+            System.out.println("Enter the elements of :\n First Matrix(Rows wise)\n");
+            for(int i=0;i  < row ; i++){
+                for(int j=0;j < column;j++){
+                    m1[i][j]=sc.nextInt();
+                }
+            }
+            System.out.println("Enter the Elements of :\n Second Matrix(Row wise)");
+            for(int i=0;i< row;i++){
+                for(int j=0;j < column;j++){
+                    m2[i][j]=sc.nextInt();  
+                }
+            }
+                 <br> <p>//Matrix multiplication</p> 
+            for(int i=0;i< row;i++){
+                for(int j=0;j <  column ; j++ ){
+                    for(int k=0;k< row;k++){
+                        m3[i][j]=m3[i][j]+m1[i][k]*m2[k][j];
+                    }
+              }
+            
+            }
+           <p>System.out.println(" The product of two matrices is :\n " );</p> 
+                 for(int i=0;i < row;i++){
+                for (int j=0;j< column;j++){
+                    System.out.print(m3[i][j]+ " \t " );
+                }
+                System.out.println();
+            }
+            sc.close();
+        }
+    }
+  </pre>
+  </div>
+
+  <div class="container">
+    <h3 id="frequencycount">Frequency count</h3>
+  <pre>
+    
+import java.util.Scanner;
+
+
+public class FrequencyCount {
+    public static void main(String[] args) {
+        int i,count;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter a string to count:");
+        String str=sc.nextLine();
+        System.out.println("Enter a character :");
+        char ch=sc.nextLine().charAt(0);
+        count=0;
+       <p> for(i=0;i<str.length();i++)</p>
+        {
+            if(str.charAt(i)==ch)
+            {
+                count++;
+            }
+                
+        }
+        System.out.println("count of character "+ch+"is "+count);
+        
+        
+
+    }
+    
+}
+  </pre>
+    </div>
+
+    <div class="container">
+      <h3 id="exception">Exception handling</h3>
+      
+      <pre>
+      
+      public class exceptiontest {
+          public static void main(String[] args) {
+              
+              try{
+                  int data=25/0;
+                  System.out.println(data);
+              }
+              catch(ArithmeticException e){
+                  System.out.println(e);
+              }
+              finally{
+                  System.out.println("End of operations");
+              }
+          }
+      }
+      </pre>
+      </div>
+      <div class="container">
+        <h3 id="garbage">Garbage collection</h3>
+        
+        <pre>
+        
+        
+        public class Garbagecollection {
+         public  void finalize(){
+             System.out.println("Garbage collected");
+         }
+             public static void main(String[] args) {
+                Garbagecollection s1=new Garbagecollection();
+                Garbagecollection s2=new Garbagecollection();
+                s1=null;
+                System.gc();
+            }
+        
+        }
+        
+        </pre>
+        </div>
+
+        <div class="container">
+          <h3 id="copy">copy File</h3>
+          
+          <pre>
+            import java.util.*;
+import java.io.*;
+public class filetest {
+    public static void main(String[] args) throws IOException {
+        FileInputStream in=null;
+        FileOutputStream out=null;
+        try
+        {
+            in = new FileInputStream("D:\\input.txt");
+            out=new FileOutputStream("D:\\output.txt");
+            int c;
+            String str="";
+            
+            while((c=in.read())!=-1)
+            {
+                out.write(c);
+                str+=(char)c;
+                
+            }
+            System.out.println("The message in input file is :"+str);
+            int lenghts=str.length();
+            out.write(lenghts);
+            System.out.println("The lenght in Input file Stringis: \n"+lenghts);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e); 
+        }
+        
+        finally
+                {
+                    if(in!=null)
+                        in.close();
+                   if(out!=null)
+                           out.close();
+                }
+        }
+            
+    }
+ 
+            
+          </pre>
+          </div>
+          <div class="container">
+            <h3 id="abstract">abstract class shape</h3>
+            
+            <pre>
+
+              abstract class shape{
+                abstract void numberofside();
+            }
+             class hexagon extends shape{
+                 public void numberofside(){
+                     System.out.println("Side of Hexagon is : 6");
+                 }
+                
+            }
+             class square extends shape{
+                 public void numberofside(){
+                     System.out.println("Side of square is : 4");
+                 }
+                
+            }
+            class triangle extends shape{
+                 public void numberofside(){
+                     System.out.println("Side of triangle is : 3");
+                 }
+                
+            }
+            class main{
+                public static void main(String[] args) {
+                    hexagon h=new hexagon();
+                    square s=new square();
+                    triangle t=new triangle();
+                    h.numberofside();
+                    s.numberofside();
+                    t.numberofside();
+                    
+                }
+            }
+            </pre>
+            </div>
+    
+            <div class="container">
+              <h3 id="employee">Employee</h3>
+              
+              <pre>
+
+                
+import java.util.Scanner;
+
+
+public class Employee {
+    private String name;
+    private int age;
+    private long phonenumber;
+    private String address;
+    private double salary;
+    
+    public void setname(String name){
+        this.name=name;
+    }
+    public void setage(int age){
+        this.age=age;
+    }
+    public void setphonenumber(long phonenumber){
+        this.phonenumber=phonenumber;   
+    }
+    public void setaddress(String address){
+        this.address=address;
+    }
+    public void setsalary(double salary){
+        this.salary=salary;
+    }
+    
+    
+    public double printsalary(){  //print salary because in question take printsalary is described.
+        return salary;
+    }
+    public String getname(){
+        return name;
+    }
+    public int getage(){
+        return age;
+    }
+    public long getphonenumber(){
+        return phonenumber;
+    }
+    public String getaddress(){
+        return address;
+    }
+    
+            
+}
+
+class officer extends Employee{
+    private String specialization;
+    
+    public void setspecialization(String specialaization){
+        this.specialization=specialization;
+    }
+    public String getspecialization(){
+        return specialization;
+    }
+}
+
+class manager extends Employee{
+    private String department;
+    public void setdepartment(String department){
+        this.department=department;
+        
+    }
+    public String getdepartment(){
+        return department;
+    }
+}
+
+
+class main{
+    public static void main(String[] args) {
+        Scanner sc =new Scanner(System.in);
+        
+        officer o = new officer();
+        
+        System.out.println("*** Enter officer details ***");
+        System.out.println("Name :");
+        o.setname(sc.nextLine());
+        System.out.println("Age :");
+        o.setage(sc.nextInt());
+        System.out.println("Address :");
+        o.setaddress(sc.next());
+        System.out.println("Phone number:");
+        o.setphonenumber(sc.nextLong());
+        System.out.println("Specialization");
+        o.setspecialization(sc.next());
+        System.out.println("Salary:");
+        o.setsalary(sc.nextDouble());
+        
+        sc.nextLine();
+        System.out.println("The officer details are :");
+        
+        System.out.println("Name :"+o.getname());
+        System.out.println("Age  :"+o.getage());
+        System.out.println("Address :"+o.getaddress());
+        System.out.println("Phone Number :"+o.getphonenumber());
+        System.out.println("Specialization :"+o.getspecialization());
+        System.out.println("salary :"+o.printsalary());
+        
+        manager m=new manager();
+        System.out.println("***Enter Manager detials***");
+        System.out.println("Name :");
+        m.setname(sc.nextLine());
+        System.out.println("Age :");
+        m.setage(sc.nextInt());
+        System.out.println("Address :");
+        m.setaddress(sc.next());
+        System.out.println("Phone number:");
+        m.setphonenumber(sc.nextLong());
+        System.out.println("Department");
+        m.setdepartment(sc.next());
+        System.out.println("Salary:");
+        m.setsalary(sc.nextDouble());
+        
+        sc.nextLine();
+        System.out.println("The Manager details are :");
+        
+        System.out.println("Name :"+m.getname());
+        System.out.println("Age  :"+m.getage());
+        System.out.println("Address :"+m.getaddress());
+        System.out.println("Phone Number :"+m.getphonenumber());
+        System.out.println("Department :"+m.getdepartment());
+        System.out.println("salary :"+m.printsalary());
+    }
+}
+              
+              </pre>
+              </div>
+
+
+              <div class="container">
+                <h3 id="tokenizer">string tokenizer</h3>
+                
+                <pre>
+                    
+import java.util.Scanner;
+import java.util.StringTokenizer;
+public class Stringtokenizer 
+{
+    public static void main(String args[])
+    {
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println("Enter Numbers Seperated by SPACE ");
+    String str =sc.nextLine();
+    StringTokenizer st = new StringTokenizer(str," ");
+    int iny,sum=0;
+    while(st.hasMoreTokens())
+    {
+        try
+        {
+            iny=Integer.parseInt(st.nextToken());
+            sum=sum+iny;
+            System.out.println("No:"+iny);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+     System.out.println("Sum = "+sum);
+    }
+}
+    
+
+                </pre>
+                </div>
+
+                <div class="container">
+                    <h3 id="thread">Thread sychroization</h3>
+                    
+                    <pre>
+                        
+
+                        class Table{  
+                            synchronized void printTable(int n){//method not synchronized  
+                               for(int i=1;i<=5;i++){  
+                                 System.out.println(n*i);  
+                                 try{  
+                                  Thread.sleep(400);  
+                                 }catch(Exception e){System.out.println(e);}  
+                               }  
+                              
+                             }  
+                            }  
+                              
+                              class MyThread1 extends Thread{  
+                               Table t;  
+                                MyThread1(Table t){  
+                                 this.t=t;  
+                                 }  
+                                public void run(){  
+                                 t.printTable(5);  
+                                 } 
+                              }
+                              class MyThread2 extends Thread{  
+                            Table t;  
+                            MyThread2(Table t){  
+                            this.t=t;  
+                            }  
+                            public void run(){  
+                            t.printTable(100);  
+                            }  
+                            }  
+                              
+                            class TestSynchronization1{  
+                            public static void main(String args[]){  
+                            Table obj = new Table();//only one object  
+                            MyThread1 t1=new MyThread1(obj);  
+                            MyThread2 t2=new MyThread2(obj);  
+                            t1.start();  
+                            t2.start();  
+                            }  
+                            }  
+                            
+                            
+                    </pre>
+                    </div>   
+                    
+                    
+                    <div class="container">
+                        <h3 id="multithread">Multi Thread</h3>
+                        
+                        <pre>
+                            
+import java.util.Random;
+class Square extends Thread
+{
+	int x;
+	Square(int n)
+	{
+		x=n;
+	}
+	public void run()
+{
+	int sqr=x*x;
+	System.out.println("Square of "+x+"="+sqr);
+}
+}
+class Cube extends Thread
+{
+	int x;
+	Cube(int n)
+	{
+		x=n;
+	}
+	public void run()
+{
+	int cub=x*x*x;
+	System.out.println("Cube of "+x+"="+cub);
+}
+}
+class Number extends Thread
+{
+	public void run()
+	{
+		Random random=new Random();
+		for(int i=0;i< 5;i++)
+                {
+			int randominteger=random.nextInt(100);
+			System.out.println(" Random Integer Generated: " +randominteger);
+			if(randominteger%2= = 0 ){
+				Square s=new Square(randominteger);
+				s.start();
+			}
+			else
+			{
+				Cube c=new Cube(randominteger);
+				c.start();
+			}
+			try{
+				Thread.sleep(1000);
+			}catch(InterruptedException ex){
+				System.out.println(ex);
+			}
+		}
+	}
+}
+	public class Multithread
+        {
+		public static void main(String args[])
+		{   
+		
+			Number n=new Number();
+			n.start();
+		}
+	}
+
+                            
+    
+
+    
+                        </pre>
+                        </div> 
+
+
+                        <div class="container">
+                            <h3 id="database">Database </h3>
+                            
+                            <pre>
+ import java.sql.*;
+public class mysqlexp12
+{  
+public static void main(String args[])
+{ 
+try
+{  
+Class.forName("com.mysql.jdbc.Driver");  
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/hello","root","");    
+Statement stmt=con.createStatement();  
+ResultSet rs=stmt.executeQuery("select * from student  ");
+  
+while(rs.next())  
+{
+System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getInt(3));
+}
+con.close();  
+}catch(Exception e)
+{ System.out.println(e);
+}  
+}
+}
+
+        
+    
+        
+                            </pre>
+                            </div> 
+</body>
+</html>
