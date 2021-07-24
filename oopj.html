@@ -4,6 +4,9 @@
   <title>System settings</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -31,32 +34,33 @@
 <h3 id="palindrome">Palindrome</h3>
 
 <pre>
- <code id="htmlViewer" style="width: auto;overflow: auto;color:rgb(47, 51, 55); font-weight:400;background-color:rgb(246, 246, 246);background:rgb(246, 246, 246);display:block;padding: .5em;">
+
 import java.util.Scanner;
 
 
-<span style="color:rgb(1, 86, 146); font-weight:400;">public</span> <span style="color:rgb(1, 86, 146); font-weight:400;">class</span> <span style="color:rgb(183, 85, 1); font-weight:400;">Palindrome</span> {
-<span style="color:rgb(47, 51, 55); font-weight:400;"><span style="color:rgb(1, 86, 146); font-weight:400;">public</span> <span style="color:rgb(1, 86, 146); font-weight:400;">static</span> <span style="color:rgb(1, 86, 146); font-weight:400;">void</span> <span style="color:rgb(183, 85, 1); font-weight:400;">main</span>(<span style="color:rgb(47, 51, 55); font-weight:400;">String args[]</span>)</span>{
-    String orginal,reverse=<span style="color:rgb(84, 121, 13); font-weight:400;">&quot;&quot;</span>;
-    Scanner sc=<span style="color:rgb(1, 86, 146); font-weight:400;">new</span> Scanner(System.<span style="color:rgb(1, 86, 146); font-weight:400;">in</span>);
-    System.<span style="color:rgb(1, 86, 146); font-weight:400;">out</span>.println(<span style="color:rgb(84, 121, 13); font-weight:400;">&quot;Enter a String or Number to check palindome:&quot;</span>);
+public class Palindrome {
+public static void main(String args[]){
+    String orginal,reverse="";
+    Scanner sc=new Scanner(System.in);
+    System.out.println("Enter a String or Number to check palindome:");
     orginal=sc.nextLine();
-    <span style="color:rgb(183, 85, 1); font-weight:400;">int</span> length=orginal.length();
-    <span style="color:rgb(1, 86, 146); font-weight:400;">for</span>(<span style="color:rgb(183, 85, 1); font-weight:400;">int</span> i=length<span style="color:rgb(183, 85, 1); font-weight:400;">-1</span>;i&gt;=<span style="color:rgb(183, 85, 1); font-weight:400;">0</span>;i--)
+    int length=orginal.length();
+    for(int i=length-1;i>=0;i--)
     
         reverse=reverse+orginal.charAt(i);
-        <span style="color:rgb(1, 86, 146); font-weight:400;">if</span>(orginal.<span style="color:rgb(1, 86, 146); font-weight:400;">equals</span>(reverse))
+        if(orginal.equals(reverse))
         
-            System.<span style="color:rgb(1, 86, 146); font-weight:400;">out</span>.println(<span style="color:rgb(84, 121, 13); font-weight:400;">&quot;Entered string/Number is palindrome&quot;</span>);
+            System.out.println("Entered string/Number is palindrome");
         
-        <span style="color:rgb(1, 86, 146); font-weight:400;">else</span>
-            System.<span style="color:rgb(1, 86, 146); font-weight:400;">out</span>.println(<span style="color:rgb(84, 121, 13); font-weight:400;">&quot;Not palindrome&quot;</span>);
+        else
+            System.out.println("Not palindrome");
         
     
 }
 }
 
-</code></pre>
+
+</pre>
 </div>
 
 <div class="container">
