@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>System settings</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+  <div class="container">
+      <br>
+       <a style="    padding-left: 12px;
+       outline-style: solid;
+       margin-left: 62px" href="oopj.html">Click here for OOPJ &nbsp;&nbsp;</a>
+    <h2 style="font-weight: bolder;color: black;">Data Structure</h2>
+    <h3>Index</h3>
+    <a href="#stackarray">1.Stack using Array</a> <br>
+    <a href="#queuearay">2.Queue using Array</a><br>
+    <a href="#linearsearch">3.linear search</a> <br>
+    <a href="#binarysearch">4.Binary search</a><br>
+    <a href="#bubblesort">5.Bubble sort </a><br>
+    <a href="#selectionsort">7.selection sort </a><br>
+    <a href="#mergesort">8.merge sort</a><br>
+    <a href="#heapsort">9.Heap sort </a><br>
+    <a href="#polyarray">10.Polinomial additon using Array</a><br>
+    <a href="#polylinkedlist">11.Polinomial additon using Linked List</a><br>
+    <a href="#stackusinglinkedlist">12.Stack using Linked list</a><br>
+    <a href="#queueusinglinkedlist">13.Queue using Linked list</a><br>
+    <a href="#infixtopostfix">14.Infix to Postfix</a><br>
+    <a href="#bfsanddfs">15.Bfs and Dfs</a><br>
+    <a href="#binarytree">16.Binary tree</a><br>
+    <a href="#linkedlist">17.Linked list </a><br>
+    <a href="#"></a><br>
+
+    </div>
+
+
+
+  
+
+<div class="container">
+<h3 id="stackarray">stack using Array</h3>
+
+<pre>
+    #include&#60;stdio.h&#62;
+        int stack[100],i,choice=0,n,top=-1;
+        void push();
+        void pop();
+        void display();
+        
+        void main()
+        {
+           printf("Enter the limit :");
+           scanf("%d",&n);
+           while(choice!=4)
+        
+           
+           {
+               printf("Enter your choice :\n1.push\n2.pop\n3.display\n4.exit");
+           scanf("%d",&choice);
+           switch(choice)
+           {
+                case 1:
+                    {
+                        push();
+                        break;
+                    }
+             case 2:
+                 {
+                     pop();
+                     break;
+                 }
+                  case 3:
+                 {
+                     display();
+                     break;
+                 }
+                 case 4:
+                 {
+                     printf("Exiting....");
+                     break;
+                 }
+                default:
+                    {
+                        printf("Enter a correct choice");
+                    }
+           }
+           }
+        }
+        void push()
+        {     
+              int x;
+        
+            if(top==n)
+            {
+                printf("Stack is full");
+            }
+            else{
+                     printf("Enter a element to push:");
+             scanf("%d",&x);
+                top++;
+                stack[top]=x;
+            }
+        }
+        
+        void pop()
+        {  
+            int item;
+            if(top==-1)
+            {
+                printf("stack is empty");
+            }
+            else{
+                top--;
+                item=stack[top];
+                printf("pop element:",item);
+            }
+        }
+        
+        void display()
+        {
+            if(top=-1)
+            {
+                printf("stack is empty");
+            }
+            else{
+                for(i=top;i&#60; n;i--)
+                {
+                    println("stack elemetns are :",stack[i]);
+                }
+            }
+        }
+  
+</pre>
+</div>
+
+<div class="container">
+  <h3 id="queuearray">Queue using Array</h3>
+  <pre>
+    #include&#60;stdio.h&#62;
+        #include&#60;stdlib.h&#62;
+        #define n 5 
+        int queue[5];
+        int front =-1;
+        int rear=-1;
+        
+        void enqueue();
+        void dequeue();
+        void display();
+        
+        void main()
+        {
+            int choice;
+            while(choice!=4)
+            {
+                    printf("\nEnter a choice :\n1.Enqueue\n2.Dequeue\n3.display\n4.exit\n");
+            scanf("%d",&choice);
+            
+                switch(choice)
+                {
+                    case 1:
+                        enqueue();
+                        break;
+                    case 2:
+                        dequeue();
+                        break;
+                    case 3:
+                        display();
+                        break;
+                    case 4:
+                        exit(0);
+                    default:
+                        {
+                            printf("\nwrong choice entered\n");
+                        }
+                    
+                }	
+            }
+        
+            
+        }
+        void enqueue()
+        {
+            int x;
+            printf("\nEnter a element to insert:\n");
+            scanf("%d",&x);
+            if(rear==n-1)
+            {
+                printf("queue full");
+            }
+            else if(front=-1 && rear==-1){
+                front=rear=0;
+                queue[rear]=x;
+            }
+            else{
+                rear++;
+                queue[rear]=x;
+            }
+        }
+        void dequeue(){
+            if(front==-1 && rear==-1)
+            {
+                printf("queue is empty");
+            }
+            else if(front==rear)
+            {
+                front=rear=-1;
+            }
+            else{
+                printf("\ndequeue of element is %d",queue[front]);
+                front++;
+            }
+        }
+        
+        void display()
+        {
+            int i;
+            if(front==-1 && rear==-1)
+            {
+                printf("\nQueue is empty");
+            }
+            else{
+                for(i=front;i&#60; rear+1;i++)
+                {
+                    printf("\n %d\n ",queue[i]);
+                }
+            }
+        }
+  </pre>
+  </div>
+
+  <div class="container">
+    <h3 id="linearsearch">Linear search</h3>
+  <pre>
+    #include&#60;stdio.h&#62;
+        void main()
+        {
+            int i,a[100],n,search;
+            
+            printf("Enter the limit:");
+            scanf("%d",&n);
+            printf("Enter %d integers:\n",n);
+            for(i=0;i < n;i++)
+            {
+                scanf(" %d " ,&a[i]);
+            }
+            printf( " Enter value to search:" );
+            scanf(" %d " , & search);
+            
+            
+           for(i=0;i < n; i++)
+            {
+                if(a[i]== search)
+            {
+                printf(" Element found at %d positon" ,i+1);
+            
+            }
+            if(i== n){
+                printf(" Element not found" );
+            }
+        
+            }
+        
+            
+        }
+
+  </pre>
+    </div>
+
+    <div class="container">
+      <h3 id="binarysearch">Binary Search</h3>
+      
+      <pre>
+        #include&#60;stdio.h&#62;
+            int main()
+            {
+              int i, first, last, middle, n, search, array[100];
+            
+              printf("Enter number of elements\n");
+              scanf("%d", &n);
+            
+              printf("Enter %d integers\n", n);
+            
+              for (i = 0; i < n; i++)
+                scanf("%d", &array[i]);
+            
+              printf("Enter value to find\n");
+              scanf("%d", &search);
+            
+              first = 0;
+              last = n - 1;
+              middle = (first+last)/2;
+            
+              while (first <= last) {
+                if (array[middle] < search)
+                  first = middle + 1;
+                else if (array[middle] == search) {
+                  printf("%d found at location %d.\n", search, middle+1);
+                  break;
+                }
+                else
+                  last = middle - 1;
+            
+                middle = (first + last)/2;
+              }
+              if (first > last)
+                printf("Not found! %d isn't present in the list.\n", search);
+            
+              return 0;
+            }
+      </pre>
+      </div>
+      <div class="container">
+        <h3 id="bubblesort">Bubble sort</h3>
+        
+        <pre>
+            
+        
+        
+            #include&#60;stdio.h&#62;
+                int main()
+                {
+                    int i,j,n,temp,a[100];
+                    
+                    printf("Enter the no of Elements:");
+                    scanf("%d",&n);
+                    printf("Enter %d numbers :",n);
+                    for(i=0;i&#60; n;i++)
+                    {
+                        scanf(" %d" ,&a[i]);
+                    }
+                    
+                    
+                    for(i=0;i&#60; n-1;i++){
+                        for(j=0;j < n-i-1;j++){
+                            if(a[j]>a[j+1])
+                            {
+                                temp=a[j];
+                                a[j]=a[j+1];
+                                a[j+1]=temp;
+                            }
+                        }
+                    }
+                    
+                    printf("sorted elements are:");
+                    for(i=0;i&#60; n;i++){
+                      printf(" \n%d" , a[i]);
+                    }
+                    
+                }
+        
+        </pre>
+        </div>
+
+        <div class="container">
+            <h3 id="selectionsort">Selection sort</h3>
+            
+            <pre>
+            
+            
+                #include&#60;stdio.h&#62;
+                    void main()
+                    {
+                        int i,n,a[i],min,temp,j;
+                        
+                        printf("Enter no of Elements:");
+                        scanf("%d",&n);
+                        printf("Enter number of Elements:");
+                      for(i=0;i&#60; n;i++)
+                        {
+                            scanf("  %d " ,&a[i]);
+                        }  
+                        
+                        for(i=0;i&#60; n-1;i++)
+                        {
+                            min=i;
+                            for(j=i+1;j< n;j++){
+                                if(a[j] < a[min]){
+                                    min=j;
+                                }
+                            }
+                                if(min!=-1){
+                            temp=a[i];
+                            a[i]=a[min];
+                            a[min]=temp;
+                        }
+                        }
+                    
+                        
+                        for(i=0;i&#60; n;i++)
+                        {
+                            printf(" \n%d" ,a[i]);
+                        }
+                    }
+            
+            </pre>
+            </div>
+
+            <div class="container">
+                <h3 id="mergesort">Merge sort</h3>
+                
+                <pre>
+                
+                
+                    #include&#60;stdio.h&#62;
+
+                        void mergesort(int a[],int i,int j);
+                        void merge(int a[],int i1,int j1,int i2,int j2);
+                        
+                        int main()
+                        {
+                            int a[100],n,i;
+                            printf("Enter the size of Array:");
+                            scanf("%d",&n);
+                            printf("Enter the %d elements:\n",n);
+                            for(i=0;i&#60; n;i++)
+                            {
+                                scanf("%d",&a[i]);
+                            }
+                            mergesort(a,0,n-1);
+                            
+                            printf("sorted elments are:\n");
+                            for(i=0;i&#60; n;i++)
+                            {
+                                printf("\n%d",a[i]);
+                            }
+                            
+                        }
+                        
+                        void mergesort(int a[],int i,int j)
+                        {
+                            int mid;
+                            if(i&#60; j){
+                                mid=(i+j)/2;
+                                mergesort(a,i,mid);  / /left
+                                mergesort(a,mid+1,j);//right
+                                merge(a,i,mid,mid+1,j);//merge
+                            }
+                        }
+                        void merge(int a[],int i1,int j1,int i2,int j2)
+                        {
+                            int temp[50];	//array used for merging
+                            int i,j,k;
+                            i=i1;	//beginning of the first list
+                            j=i2;	//beginning of the second list
+                            k=0;
+                        
+                            
+                            while(i&#60;=j1 && j<=j2)   	//while elements in both lists
+                            {
+                                if(a[i]< a[j]){
+                                     temp[k++]=a[i++];
+                                }
+                                else{
+                                temp[k++]=a[j++];	
+                                }
+                                
+                            }
+                            
+                            while(i&#60;=j1)     	//copy remaining elements of the first list
+                            {
+                                temp[k++]=a[i++];
+                            }
+                            while(j<=j2)        //copy remaining elements of the second list
+                            {
+                                temp[k++]=a[j++];			
+                            }
+                            for(i=i1,j=0;i&#60;=j2;i++,j++)             //Transfer elements from temp[] back to a[]
+                            {
+                                a[i]=temp[j];
+                            }
+                            
+                        }
+                </pre>
+                </div>
+
+                <div class="container">
+                    <h3 id="heapsort">Heap sort </h3>
+                    
+                    <pre>
+                    
+                    
+                        //HEAP SORT
+                        
+                        #include&#60;stdio.h&#62;
+                        #include&#60;conio.h&#62;
+                        # define MAX_SIZE 5
+                        void heap_sort();
+                        void heap_adjust(int, int);
+                        int  arr_sort[MAX_SIZE],t, a;
+                        int main() 
+                        {
+                         
+                          int i;
+                         
+                          printf("\nEnter %d Elements for Sorting\n", MAX_SIZE);
+                           
+                          for (i = 0; i < MAX_SIZE; i++)
+                            scanf("%d", &arr_sort[i]);
+                        
+                          printf("\nYour Data   :");
+                          for (i = 0; i < MAX_SIZE; i++)
+                           {
+                            printf("\t%d", arr_sort[i]);
+                          }
+                        
+                          heap_sort();
+                        
+                          printf("\n\nSorted Data :");
+                          for (i = 0; i < MAX_SIZE; i++) 
+                          {
+                            printf("\t%d", arr_sort[i]);
+                          }
+                        
+                          getch();
+                        
+                        }
+                        
+                        void heap_sort()
+                         {
+                         int i;
+                          for ( i = MAX_SIZE / 2 - 1; i >= 0; i--)
+                            heap_adjust(MAX_SIZE, i);
+                        
+                          for ( i = MAX_SIZE - 1; i >= 0; i--) { 
+                            t = arr_sort[0];
+                            arr_sort[0] = arr_sort[i];
+                            arr_sort[i] = t;
+                            heap_adjust(i, 0);
+                        
+                            printf("\nHeap Sort Iteration %d : ", i);
+                            for (a = 0; a < MAX_SIZE; a++) 
+                            {
+                              printf("\t%d", arr_sort[a]);
+                            }
+                          }
+                        }
+                        
+                        void heap_adjust(int n, int i) {
+                          int large = i, left = 2 * i + 1, right = 2 * i + 2;
+                          if (left < n && arr_sort[left] > arr_sort[large])
+                            large = left;
+                          if (right < n && arr_sort[right] > arr_sort[large])
+                            large = right;
+                        
+                        
+                          if (large != i) 
+                          {
+                            
+                            t = arr_sort[i];
+                            arr_sort[i] = arr_sort[large];
+                            arr_sort[large] = t;
+                            heap_adjust(n, large);
+                          }
+                        }
+                    
+                    </pre>
+                    </div>
+
+                    <div class="container">
+                        <h3 id="polyarray">Polinomial addition using Array</h3>
+                        
+                        <pre>
+                        
+                        
+                            
+                            //IMPLEMNETATION OF POLYNOMIAL ADDITION USING ARRAY 
+                            #include&#60;stdio.h&#62;
+                            #include&#60;math.h&#62;
+                            struct poly
+                            {
+                              float coeff;
+                              int exp;
+                            };
+                            struct poly a[50],b[50],c[50],d[50];
+                            int main()
+                            {
+                             int i;
+                             int deg1,deg2;     
+                             int k=0,l=0,m=0;
+                             
+                             printf("Enter the highest degree of poly1:");
+                             scanf("%d",&deg1);
+                             for(i=0;i&#60;=deg1;i++)
+                             {
+                                printf("\nEnter the coeff of x^%d :",i);
+                                scanf("%f",&a[i].coeff);
+                                a[k++].exp = i;
+                             }
+                             printf("\nEnter the highest degree of poly2:");
+                             scanf("%d",&deg2);
+                             
+                             for(i=0;i&#60; =deg2;i++)
+                             { 
+                                   printf("\nEnter the coeff of x^%d :",i);
+                                   scanf("%f",&b[i].coeff);
+                                   
+                                   b[l++].exp = i;
+                             }
+                              printf("\nExpression 1 = %.1f",a[0].coeff);
+                              for(i=1;i&#60;=deg1;i++)
+                              {
+                                printf("+ %.1fx^%d",a[i].coeff,a[i].exp);
+                              }    
+                              printf("\nExpression 2 = %.1f",b[0].coeff);
+                               for(i=1;i&#60;=deg2;i++)
+                                {
+                                  printf("+ %.1fx^%d",b[i].coeff,b[i].exp);
+                                }	
+                             if(deg1>deg2)
+                                {
+                                     for(i=0;i&#60;=deg2;i++)
+                                      {
+                                        c[m].coeff = a[i].coeff + b[i].coeff;
+                                        c[m].exp = a[i].exp;
+                                        m++;
+                                      }
+                                      
+                                      for(i=deg2+1;i&#60;=deg1;i++)
+                                      {
+                                        c[m].coeff = a[i].coeff;
+                                        c[m].exp = a[i].exp;
+                                        m++;
+                                      }
+                            
+                                }
+                             else
+                              {
+                                for(i=0;i&#60;=deg1;i++)
+                                 {
+                                   c[m].coeff = a[i].coeff + b[i].coeff;
+                                   c[m].exp = a[i].exp;
+                                   m++;
+                                 }
+                                
+                                for(i=deg1+1;i&#60;=deg2;i++)
+                                {
+                                  c[m].coeff = b[i].coeff;
+                                  c[m].exp = b[i].exp;
+                                  m++;
+                                }
+                              }
+                              printf("\nExpression after additon  = %.1f",c[0].coeff);
+                              for(i=1;i&#60; m;i++)
+                              {
+                                 printf(" + %.1fx^%d",c[i].coeff,c[i].exp);
+                               }	 
+                             
+                              return 0;
+                            
+                            }
+                        
+                        </pre>
+                        </div>
+
+                        <div class="container">
+                            <h3 id="polylinkedlist">Polinomial addition using Linked List</h3>
+                            
+                            <pre>
+                            
+                            
+                                //IMPLEMENTATION OF PLOYNOMIAL ADDITION USING LINKED LIST
+                                
+                                #include&#60;stdio.h&#62;
+                                #include&#60;stdlib.h&#62;
+                                struct node
+                                {
+                                int coef,expo;
+                                struct node* next;
+                                };
+                                struct node* insertpoly(struct node* thead,int c,int e);
+                                struct node* append(struct node* thead,int c,int e);
+                                struct node* polyadd(struct node* p1thead,struct node* p2thead);
+                                void display(struct node* thead);
+                                void main()
+                                {
+                                    int a,b,n,i;
+                                    struct node* p1head,* p2head,* p3head;
+                                    p1head=p2head=NULL;
+                                   
+                                    printf("\nEnter the no of terms in polynomial 1:");
+                                    scanf("%d",&n);
+                                    printf("\nEnter the polynomial..");
+                                    for(i=0;i&#60; n;i++){
+                                        printf("\nEnter the coefficient and exponent of the term:");
+                                        scanf("%d%d",&a,&b);
+                                        p1head=insertpoly(p1head,a,b);
+                                    }
+                                    printf("\nEnter the no of terms in polynomial 2:");
+                                    
+                                    scanf("%d",&n);
+                                    printf("\nEnter the polynomial..");
+                                    for(i=0;i&#60; n;i++){
+                                        printf("\nEnter the coefficient and exponent of the term:");
+                                        scanf("%d%d",&a,&b);
+                                        p2head=insertpoly(p2head,a,b);
+                                    }
+                                    p3head=polyadd(p1head,p2head);
+                                    printf("\nThe polynomial 1 is ");
+                                    display(p1head);
+                                    printf("\nThe polynomial 2 is ");
+                                    display(p2head);
+                                    printf("\nThe sum of the two polynomials is ");
+                                    display(p3head);
+                                }
+                                
+                                struct node* append(struct node* thead,int c,int e)
+                                {
+                                    struct node* newnode = (struct node*)malloc(sizeof(struct node));
+                                    newnode->coef=c;
+                                    newnode->expo=e;
+                                    if(thead==NULL)
+                                    {
+                                    newnode->next=NULL;
+                                    return newnode;
+                                    }
+                                    struct node* trav=thead;
+                                    while(trav->next!=NULL) 
+                                        trav=trav->next;
+                                    trav->next=newnode;
+                                    newnode->next=NULL;
+                                    return thead;
+                                }
+                                
+                                struct node* insertpoly(struct node* thead,int c,int e)
+                                {
+                                    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+                                    newnode->coef=c;
+                                    newnode->expo=e;
+                                    if(thead==NULL)
+                                    {
+                                        newnode->next=NULL;
+                                        return newnode;
+                                    }
+                                    struct node* prev,* curr;
+                                    prev=curr=thead;
+                                    while(curr!=NULL && curr->expo>e)
+                                    {
+                                        prev=curr;
+                                        curr=curr->next;
+                                    }
+                                    if(curr==thead)
+                                    {
+                                        newnode->next=curr;
+                                        return newnode;
+                                    }
+                                    else if(curr==NULL)
+                                    {   
+                                        prev->next=newnode;
+                                        newnode->next=NULL;
+                                    }
+                                    else
+                                    {
+                                        newnode->next=curr;
+                                        prev->next=newnode;
+                                    }
+                                    return thead;
+                                }
+                                
+                                struct node* polyadd(struct node* p1thead,struct node* p2thead)
+                                {
+                                    struct node* ans=NULL;
+                                    struct node* t1,* t2;
+                                    t1=p1thead;
+                                    t2=p2thead;
+                                    while(t1!=NULL && t2!=NULL)
+                                    {
+                                        if(t1->expo > t2->expo)
+                                      {
+                                            ans=append(ans,t1->coef,t1->expo);
+                                            t1=t1->next;
+                                        }
+                                        else if(t1->expo < t2->expo)
+                                      {
+                                            ans=append(ans,t2->coef,t2->expo);
+                                            t2=t2->next;
+                                        }
+                                        else
+                                      {
+                                            ans=append(ans,(t1->coef)+(t2->coef),t1->expo);
+                                            t1=t1->next;
+                                            t2=t2->next;
+                                        }
+                                    }
+                                
+                                    while(t1!=NULL)
+                                    {         
+                                        ans=append(ans,t1->coef,t1->expo);
+                                        t1=t1->next;
+                                    }
+                                
+                                    while(t2!=NULL)
+                                    {            
+                                        ans=append(ans,t2->coef,t2->expo);
+                                        t2=t2->next;
+                                    }
+                                    return ans;
+                                }
+                                
+                                void display(struct node* thead)
+                                {
+                                    struct node* temp=thead;
+                                    if(temp==NULL)
+                                    {
+                                        printf("\nEmpty..");
+                                    }
+                                    else{
+                                        while(temp->next!=NULL)
+                                      {
+                                            printf(" %dx^%d +",temp->coef,temp->expo);
+                                            temp=temp->next;
+                                        }
+                                       printf(" %dx^%d ",temp->coef,temp->expo);
+                                    }
+                                }
+                            
+                            </pre>
+                            </div>
+
+                            <div class="container">
+                                <h3 id="stackusinglinkedlist">Stack using Linked list</h3>
+                                
+                                <pre>
+                                
+                                
+                                   
+                                    #include&#60;stdio.h&#62;
+                                    #include&#60;stdlib.h&#62; 
+                                    struct Node
+                                     { 
+                                    int data; 
+                                    struct Node *next; 
+                                    }
+                                    *top = NULL; 
+                                    void push(int); 
+                                    void pop(); 
+                                    void display();
+                                     void main() 
+                                    {
+                                     int ch, value;
+                                    printf("\nImplementation of Stack using Linked List\n");
+                                    
+                                     while(1)
+                                    { 
+                                    printf("\n1. Push\n2. Pop\n3. Display\n4. Exit\n");
+                                    printf("Enter your choice: ");
+                                    scanf("%d",&ch);
+                                    switch(ch)
+                                    { 	 
+                                    case 1:
+                                    printf("Enter the value to be insert: "); 	
+                                    scanf("%d", &value); 		
+                                    push(value); 		
+                                    break; 
+                                    case 2: 
+                                    pop();
+                                    break; 	
+                                    case 3:
+                                    display(); 
+                                    break; 	 
+                                    case 4: 
+                                    exit(0); 
+                                    default:
+                                    printf("\nWrong Choice\n");
+                                    } 
+                                    }
+                                    } 
+                                    void push(int value)  
+                                    { 
+                                    struct Node *newNode; 
+                                    newNode = (struct Node*)malloc(sizeof(struct Node));
+                                    newNode->data = value; 
+                                    if(top == NULL) 
+                                    newNode->next = NULL;
+                                    else 
+                                    newNode->next = top; 
+                                    top = newNode;
+                                    printf("\nInsertion is Success\n"); 
+                                    } 
+                                    void pop()
+                                     { 
+                                    if(top == NULL) 
+                                    printf("\nStack is Empty\n"); 
+                                    else
+                                    { 
+                                    struct Node *temp = top;
+                                    printf("\nDeleted element: %d", temp->data);
+                                    top = temp->next; 
+                                    free(temp); 
+                                    }
+                                    } 
+                                    void display() 
+                                    {
+                                     if(top == NULL) 
+                                    printf("\nStack is Empty!!!\n");
+                                     else
+                                    { 
+                                    struct Node *temp = top;
+                                     while(temp->next != NULL)
+                                    { 
+                                    printf("%d--->",temp->data); 	
+                                    temp = temp -> next; 
+                                    } 
+                                    printf("%d--->NULL",temp->data);
+                                    } 
+                                    }
+                                
+                                </pre>
+                                </div>
+
+                                <div class="container">
+                                    <h3>Queue using Linked List</h3>
+                                    
+                                    <pre>
+                                    
+                                    
+                                       
+                                        #include&#60;stdio.h&#62;
+                                        #include&#60;stdlib.h&#62;
+                                         
+                                        struct node
+                                        {
+                                        int info;
+                                        struct node *ptr;
+                                        }*front,*rear,*temp,*front1;
+                                         
+                                        int frontelement();
+                                        void enq(int data);
+                                        void deq();
+                                        void empty();
+                                        void display();
+                                        void create();
+                                        void queuesize();
+                                         
+                                        int count = 0;
+                                         
+                                        void main()
+                                        {
+                                            int no, ch, e;
+                                            
+                                            printf("\n\n 1 - Enque");
+                                            printf("\n 2 - Deque");
+                                            printf("\n 3 - Front element");
+                                            printf("\n 4 - Empty");
+                                            printf("\n 5 - Exit");
+                                            printf("\n 6 - Display");
+                                            printf("\n 7 - Queue size");
+                                            create();
+                                            while (1)
+                                            {
+                                              printf("\n Enter choice : ");
+                                              scanf("%d", &ch);
+                                              switch (ch)
+                                              {
+                                              case 1:
+                                              printf("Enter the data : ");
+                                              scanf("%d", &no);
+                                              enq(no);
+                                              break;
+                                              case 2:
+                                              deq();
+                                              break;
+                                              case 3:
+                                              e = frontelement();
+                                              if (e != 0)
+                                              printf("Front element : %d", e);
+                                              else
+                                              printf("\n No front element in Queue as queue is empty");
+                                              break;
+                                              case 4:
+                                              empty();
+                                              break;
+                                              case 5:
+                                              exit(0);
+                                              case 6:
+                                              display();
+                                              break;
+                                              case 7:
+                                              queuesize();
+                                              break;
+                                              default:
+                                              printf("Wrong choice");
+                                              break;
+                                              }
+                                            }
+                                        }
+                                        void create()
+                                        {
+                                            front = rear = NULL;
+                                        }
+                                        void queuesize()
+                                        {
+                                            printf("\n Queue size : %d", count);
+                                        }
+                                        void enq(int data)
+                                        {
+                                            if (rear == NULL)
+                                            {
+                                                rear = (struct node *)malloc(1*sizeof(struct node));
+                                                rear->ptr = NULL;
+                                                rear->info = data;
+                                                front = rear;
+                                            }
+                                            else
+                                            {
+                                                temp=(struct node *)malloc(1*sizeof(struct node));
+                                                rear->ptr = temp;
+                                                temp->info = data;
+                                                temp->ptr = NULL;
+                                         
+                                                rear = temp;
+                                            }
+                                            count++;
+                                        }
+                                        void display()
+                                        {
+                                            front1 = front;
+                                         
+                                            if ((front1 == NULL) && (rear == NULL))
+                                            {
+                                                printf("Queue is empty");
+                                                return;
+                                            }
+                                            while (front1 != rear)
+                                            {
+                                                printf("%d ", front1->info);
+                                                front1 = front1->ptr;
+                                            }
+                                            if (front1 == rear)
+                                                printf("%d", front1->info);
+                                        }
+                                        void deq()
+                                        {
+                                            front1 = front;
+                                         
+                                            if (front1 == NULL)
+                                            {
+                                                printf("\n Error: Trying to display elements from empty queue");
+                                                return;
+                                            }
+                                            else
+                                                if (front1->ptr != NULL)
+                                                {
+                                                    front1 = front1->ptr;
+                                                    printf("\n Dequed value : %d", front->info);
+                                                    free(front);
+                                                    front = front1;
+                                                }
+                                                else
+                                                {
+                                                    printf("\n Dequed value : %d", front->info);
+                                                    free(front);
+                                                    front = NULL;
+                                                    rear = NULL;
+                                                }
+                                                count--;
+                                        }
+                                        int frontelement()
+                                        {
+                                            if ((front != NULL) && (rear != NULL))
+                                                return(front->info);
+                                            else
+                                                return 0;
+                                        }
+                                        void empty()
+                                        {
+                                             if ((front == NULL) && (rear == NULL))
+                                                printf("\n Queue empty");
+                                            else
+                                               printf("Queue not empty");
+                                        }
+                                    
+                                    </pre>
+                                    </div>
+
+                                    
+
+                            <div class="container">
+                                <h3 id="infixtopostfix">Infix to Postfix</h3>
+                                
+                                <pre>
+                                
+                                    //Conversion of Infix To Postfix using Stack
+                                    
+                                    #include&#60;stdio.h&#62;
+                                    #include&#60;stdlib.h&#62;      
+                                    #include&#60;ctype.h&#62; 
+                                    #include&#60;string.h&#62;
+                                    #define SIZE 100
+                                    char stack[SIZE];
+                                    int top = -1;
+                                    void push(char item)
+                                    {
+                                        if(top >= SIZE-1)
+                                        {
+                                            printf("\nStack Overflow.");
+                                        }
+                                        else
+                                        {
+                                            top = top+1;
+                                            stack[top] = item;
+                                        }
+                                    }
+                                    char pop()
+                                    {
+                                        char item ;
+                                    
+                                        if(top < 0)
+                                        {
+                                            printf("stack under flow: invalid infix expression");
+                                            getchar();
+                                            exit(1);
+                                        }
+                                        else
+                                        {
+                                            item = stack[top];
+                                            top = top-1;
+                                            return(item);
+                                        }
+                                    }
+                                    int is_operator(char s)
+                                    {
+                                        if(s == '^' || s == '*' || s== '/' || s == '+' || s=='-')
+                                        {
+                                            return 1;
+                                        }
+                                        else
+                                        {
+                                        return 0;
+                                        }
+                                    }
+                                    int precedence(char s)
+                                    {
+                                        if(s == '^')
+                                        {
+                                            return(3);
+                                        }
+                                        else if(s == '*' || s == '/')
+                                        {
+                                            return(2);
+                                        }
+                                        else if(s == '+' || s == '-')
+                                        {
+                                            return(1);
+                                        }
+                                        else
+                                        {
+                                            return(0);
+                                        }
+                                    }
+                                    
+                                    void InfixToPostfix(char infix_exp[], char postfix_exp[])
+                                    { 
+                                        int i, j;
+                                        char item;
+                                        char x;
+                                    
+                                        push('(');                               
+                                        strcat(infix_exp,")");                  
+                                    
+                                        i=0;
+                                        j=0;
+                                        item=infix_exp[i];        
+                                    
+                                        while(item != '\0')        
+                                        {
+                                            if(item == '(')
+                                            {
+                                                push(item);
+                                            }
+                                            else if( isdigit(item) || isalpha(item))
+                                            {
+                                                postfix_exp[j] = item;             
+                                                j++;
+                                            }
+                                            else if(is_operator(item) == 1)        
+                                            {
+                                                x=pop();
+                                                while(is_operator(x) == 1 && precedence(x)>= precedence(item))
+                                                {
+                                                    postfix_exp[j] = x;                  
+                                                    j++;
+                                                    x = pop();                       
+                                                }
+                                                push(x);
+                                                push(item);                 
+                                            }
+                                            else if(item == ')')        
+                                            {
+                                                x = pop();                   
+                                                while(x != '(')                
+                                                {
+                                                    postfix_exp[j] = x;
+                                                    j++;
+                                                    x = pop();
+                                                }
+                                            }
+                                            else
+                                            { 
+                                                printf("\nInvalid infix Expression.\n");        
+                                                getchar();
+                                                exit(1);
+                                            }
+                                            i++;
+                                    
+                                    
+                                            item = infix_exp[i]; 
+                                        } 
+                                        if(top>0)
+                                        {
+                                            printf("\nInvalid infix Expression.\n");      
+                                            getchar();
+                                            exit(1);
+                                        }
+                                          postfix_exp[j] = '\0'; 
+                                        }
+                                    int main()
+                                    {
+                                        char infix[SIZE], postfix[SIZE]; 
+                                             
+                                        printf("\nASSUMPTION: The infix expression contains single letter variables and single digit constants only.\n");
+                                        printf("\nEnter Infix expression : ");
+                                        gets(infix);
+                                          
+                                        InfixToPostfix(infix,postfix);                   
+                                        printf("Postfix Expression: ");
+                                        puts(postfix);                     
+                                          return 0;
+                                    }
+                                
+                                </pre>
+                                </div>
+
+                                
+        <div class="container">
+          <h3 id="bfsanddfs">Bfs and Dfs</h3>
+          
+          <pre>
+            
+            #include&#60;stdio.h&#62;
+            #include&#60;stdlib.h&#62;
+            int top=-1,front=-1,rear=-1,i,j;
+            int adjmat[12][12],st[10],q[12],n;
+            void dfs();
+            void bfs();
+            void push(int);
+            void enq(int);
+            int pop();
+            int deq();
+            main()
+            {
+            
+            printf("\nEnter no of nodes\n");
+            scanf("%d",&n);
+            printf("Enter adjacency matrix\n");
+            for(i=0;i&#60; n;i++)
+            {
+            for(j=0;j< n;j++)
+            {
+            scanf("%d",&adjmat[i][j]);
+            }
+            }
+            printf("\n adjacency matrix is\n");
+            for(i=0;i&#60; n;i++)
+            {
+            for(j=0;j< n;j++)
+            printf("%d\t",adjmat[i][j]);
+            printf("\n");
+            }
+            printf("\n DFS traversal:");
+            dfs();
+            printf("\n BFS traversal:");
+            bfs();
+            printf("\n");
+            }
+            void dfs()
+            {
+            int v=0,vis[10];
+            if(n< 1)
+            printf("graph is empty");
+            else
+            {
+            for(i=0;i&#60; n;i++)
+            vis[i]=0;
+            push(v);
+            while(top!=-1)
+            {
+            v=pop();
+            if(vis[v]==0)
+            {
+            printf("\t %d",v+1);
+            vis[v]=1;
+            for(i=0;i&#60; n;i++)
+            {
+            if(vis[i]==0&&adjmat[v][i]==1)
+            push(i);
+            }
+            }
+            }
+            }
+            }
+            void bfs()
+            {
+            int v=0,vis[10];
+            if(n< 1)
+            printf("Graph is empty");
+            else
+            for(i=0;i&#60; n;i++)
+            vis[i]=0;
+            enq(v);
+            while(front!=-1)
+            {
+            v=deq();
+            if(vis[v]==0)
+            {
+            printf("\t %d",v+1);
+            vis[v]=1;
+            for(i=0;i&#60; n;i++)
+            {
+            if(vis[i]==0&&adjmat[v][i]==1)
+            enq(i);
+            }
+            }
+            }
+            }
+            void push(int v)
+            {
+            top++;
+            st[top]=v;
+            }
+            int pop()
+            {
+            int item;
+            item=st[top];
+            top--;
+            return(item);
+            }
+            void enq(int v)
+            {
+            if(front==-1&&rear==-1)
+            front++;
+            rear++;
+            q[rear]=v;
+            }
+            int deq()
+            {
+            int item;
+            item=q[front];
+            if(front==rear)
+            {
+            front=-1;
+            rear=-1;
+            }
+            else
+            front++;
+            return item;
+            }
+
+            
+          </pre>
+          </div>
+
+          <div class="container">
+            <h3 id="binarytree">Binary tree</h3>
+            
+            <pre>
+             
+                //implementation of binary tree
+                
+                #include&#60;stdio.h&#62;
+                #include&#60;stdlib.h&#62;
+                struct node
+                {
+                int data;
+                struct node *rlink;
+                struct node *llink;
+                }*tmp=NULL;
+                typedef struct node NODE;
+                NODE *create();
+                void preorder(NODE *);
+                void inorder(NODE *);
+                void postorder(NODE *);
+                void insert(NODE *);
+                
+                int main()
+                {
+                     int n,i,ch;
+                     
+                     do
+                     {
+                          printf("\n\n1.Create\n2.Insert\n3.Preorder\n4.Postorder\n5.Inorder\n6.Exit\n");
+                          printf("\nEnter Your Choice : ");
+                          scanf("%d",&ch);
+                          switch(ch)
+                          {
+                               case 1:
+                                    tmp=create();
+                                    break;
+                               case 2:
+                                    insert(tmp);
+                                    break;
+                               case 3:
+                                    printf("\nDisplay Tree in Preorder Traversal : ");
+                                    preorder(tmp);
+                                    break;
+                               case 4:
+                                    printf("\nDisplay Tree in Postorder Traversal : ");
+                                    postorder(tmp);
+                                    break;
+                               case 5:
+                                    printf("\nDisplay Tree in Inorder Traversal : ");
+                                    inorder(tmp);
+                                    break;
+                               case 6:
+                                    exit(0);
+                                    default:
+                                    printf("\n Invaild Choice..");
+                          }
+                     }
+                     while(n!=5);
+                }
+                void insert(NODE *root)
+                {
+                     NODE *newnode;
+                     if(root==NULL)
+                     {
+                          newnode=create();
+                          root=newnode;
+                     }
+                     else
+                     {
+                          newnode=create();
+                          while(1)
+                          {
+                               if(newnode->data< root->data)
+                               {
+                                    if(root->llink==NULL)
+                                    {
+                                         root->llink=newnode;
+                                         break;
+                                    }
+                                    root=root->llink;
+                               }
+                               if(newnode->data>root->data)
+                               {
+                                    if(root->rlink==NULL)
+                                    {
+                                         root->rlink=newnode;
+                                         break;
+                                    }
+                                    root=root->rlink;
+                               }
+                          }
+                     }
+                }
+                NODE *create()
+                {
+                     NODE *newnode;
+                     int n;
+                     newnode=(NODE *)malloc(sizeof(NODE));
+                     printf("\nEnter the Data ");
+                     scanf("%d",&n);
+                     newnode->data=n;
+                     newnode->llink=NULL;
+                     newnode->rlink=NULL;
+                     return(newnode);
+                }
+                void postorder(NODE *tmp)
+                {
+                     if(tmp!=NULL)
+                     {
+                          postorder(tmp->llink);
+                          postorder(tmp->rlink);
+                          printf("%d->",tmp->data);
+                     }
+                }
+                void inorder(NODE *tmp)
+                {
+                     if(tmp!=NULL)
+                     {
+                          inorder(tmp->llink);
+                          printf("%d->",tmp->data);
+                          inorder(tmp->rlink);
+                     }
+                }
+                void preorder(NODE *tmp)
+                {
+                     if(tmp!=NULL)
+                     {
+                          printf("%d->",tmp->data);
+                          preorder(tmp->llink);
+                          preorder(tmp->rlink);
+                     }
+                }
+              
+            </pre>
+            </div>
+
+            <div class="container">
+                <h3 id="linkedlist">Linked List</h3>
+                
+                <pre>
+                   
+                    #include&#60;stdio.h&#62;
+                    #include&#60;stdlib.h&#62;
+                    struct node
+                    {
+                    int data;
+                    struct node *next;
+                    }
+                    *start=NULL,*q,*t;
+                    int main()
+                    { 
+                   
+                    int i;
+                    void insert_beg();
+                    void insert_end();
+                    int  insert_pos();
+                    void display();
+                    void delete_beg();
+                    void delete_end();
+                    int  delete_pos();
+                    while (1)
+                    {
+                    printf("\n1.Enter the data to Insert at the beg\n");
+                    printf("2.Enter the data to insert at the end\n");
+                    printf("3.Enter the data to insert at the nth pos \n");
+                    printf("4.Display\n");
+                    printf("5.Delete from the beg\n");
+                    printf("6.Delete from the end\n");
+                    printf("7.Delete from the nth pos\n");
+                    printf("8.Exit\n");
+                    printf("\nEnter your choice:");
+                    scanf("%d",&i);
+                    switch(i)
+                    {
+                    case 1:
+                    insert_beg();
+                    break;
+                    case 2:
+                    insert_end();
+                    break;
+                    case 3: 
+                    insert_pos();
+                    break;
+                    case 4:
+                    display();
+                    break;
+                    case 5: 
+                    delete_beg();
+                    break;
+                    case 6: 
+                    delete_end();
+                    break;
+                    case 7: 
+                    delete_pos();
+                    break;
+                    case 8:
+                    exit(0);
+                    default:
+                    printf("Wrong Choice");
+                    }
+                    }
+                    return 0;
+                    }
+                    void insert_beg()
+                    {
+                    int num;
+                    t=(struct node*)malloc(sizeof(struct node));
+                    printf("Enter the Data:");
+                    scanf("%d",&num);
+                    t->data=num;
+                    if(start==NULL)        
+                    {
+                    t->next=NULL;
+                    start=t;
+                    }
+                    else
+                    {
+                    t->next=start;
+                    start=t;
+                    }
+                    }
+                    void insert_end()
+                    {
+                    int num;
+                    t=(struct node*)malloc(sizeof(struct node));
+                    printf("Enter the Data:");
+                    scanf("%d",&num);
+                    t->data=num;
+                    t->next=NULL;
+                    if(start==NULL)        
+                    {
+                    start=t;
+                    }
+                    else
+                    {
+                    q=start;
+                    while(q->next!=NULL)
+                    q=q->next;
+                    q->next=t;
+                    }
+                    }
+                    int insert_pos()
+                    {
+                    int pos,i,num;
+                    if(start==NULL)
+                    {
+                    printf("List is Empty");
+                    return 0;
+                    }
+                    t=(struct node*)malloc(sizeof(struct node));
+                    printf("Enter the Data:");
+                    scanf("%d",&num);
+                    printf("Enter the position to insert:");
+                    scanf("%d",&pos);
+                    t->data=num;
+                    q=start;
+                    for(i=1;i&#60; pos-1;i++)
+                    {
+                    if(q->next==NULL)
+                    {
+                    printf("There are less elements");
+                    return 0;
+                    }
+                    q=q->next;
+                    }
+                    t->next=q->next;
+                    q->next=t;
+                    return 0;
+                    }
+                    void display()
+                    {
+                    if(start==NULL)
+                    {
+                    printf("List is Empty");
+                    }
+                    else
+                    {
+                    q=start;
+                    printf("The linked list is:\n");
+                    while(q!=NULL)
+                    {
+                    printf("%d ",q->data);
+                    q=q->next;
+                    }
+                    }
+                    }
+                    void delete_beg()
+                    {
+                    if(start==NULL)
+                    {
+                    printf("The list is Empty");
+                    }
+                    else
+                    {
+                    q=start;
+                    start=start->next;
+                    printf("Deleted element is %d",q->data);
+                    free(q);
+                    }
+                    }
+                    void delete_end()
+                    {
+                    if(start==NULL)
+                    {
+                    printf("The list is Empty");
+                    }
+                    else
+                    {
+                    q=start;
+                    while(q->next->next!=NULL)
+                    q=q->next;
+                    t=q->next;
+                    q->next=NULL;
+                    printf("Deleted element is %d",t->data);
+                    free(t);
+                    }
+                    }
+                    int delete_pos()
+                    {
+                    int pos,i;
+                    if(start==NULL)
+                    {
+                    printf("List is empty");
+                    return 0;
+                    }
+                    printf("Enter the position to delete:");
+                    scanf("%d",&pos);
+                    q=start;
+                    for(i=1;i&#60; pos-1;i++)
+                    {
+                    if(q->next==NULL)
+                    {
+                    printf("There are less elements");
+                    return 0;
+                    }
+                    q=q->next;
+                    }
+                    t=q->next;
+                    q->next=t->next;
+                    printf("Deleted element is %d",t->data);
+                    free(t);
+                    return 0;
+                    }
+      
+                  
+                </pre>
+                </div>
+
+                
+         
+</body>
+</html>
