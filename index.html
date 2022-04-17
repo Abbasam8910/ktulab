@@ -1,309 +1,363 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>System settings</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <title>System settings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
-  <div class="container">
+   
+    </head>
+    <body>
+        
+    <div class="container">
 
-    <h3>Index</h3>
-    <a href="#fcfs">1.FCFS</a> <br>
-    <a href="#sjf">2.SJF</a><br>
-    <a href="#fifo">3.FIFO</a> <br>
-    <a href="#deadlock">4.Deadlock</a><br>
-    <a href="#pass1">5.Pass 1 </a><br>
-    <a href="#"></a><br>
+        <h3>Index</h3>
+        <a href="#fcfs">1.FCFS</a> <br>
+        <a href="#sjf">2.SJF</a><br>
+        <a href="#fifo">3.FIFO</a> <br>
+        <a href="#deadlock">4.Deadlock</a><br>
+        <a href="#pass1">5.Pass 1 </a><br>
+        <a href="#"></a><br>
 
+        </div>
+
+<style>
+    pre{
+        overflow: auto;
+  background-color: #1C1B1B;
+  width: auto;
+    }
+    a {
+    color: #337ab7;
+    text-decoration: none
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+:after,:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff
+}
+.h3,h3 {
+    font-size: 24px
+}
+
+.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-hAeight: 1.1;
+    color: inherit
+}
+.h1,.h2,.h3,h1,h2,h3 {
+    margin-top: 20px;
+    margin-bottom: 10px
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+</style>
+
+    
+
+    <div class="container">
+        <h3 id="fcfs">FCFS</h3>
+        <pre>
+            <code id="htmlViewer" style="color:rgb(255, 255, 255); font-weight:400;background-color:rgb(28, 27, 27);background:rgb(28, 27, 27);display:block;padding: .5em;"><span style="color:rgb(136, 174, 206); font-weight:400;">#<span style="color:rgb(136, 174, 206); font-weight:400;">include</span><span style="color:rgb(181, 189, 104); font-weight:400;">&lt;stdio.h&gt;</span></span>
+           <span style="color:rgb(136, 174, 206); font-weight:400;">#<span style="color:rgb(136, 174, 206); font-weight:400;">include</span><span style="color:rgb(181, 189, 104); font-weight:400;">&lt;stdlib.h&gt;</span></span>
+           <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">struct</span> <span style="color:rgb(240, 141, 73); font-weight:400;">fcfs</span>
+           {</span>
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> pid;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> btime;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> wtime;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> ttime;
+           }
+           p[<span style="color:rgb(240, 141, 73); font-weight:400;">10</span>];
+           <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">int</span> <span style="color:rgb(240, 141, 73); font-weight:400;">main</span> <span style="color:rgb(255, 255, 255); font-weight:400;">()</span>
+           </span>{
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> i,n;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> totwtime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>, totttime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>;
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n FCFS SCHEDULING...\n&quot;</span>);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;Enter the no of process:&quot;</span>);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
+               <span style="color:rgb(136, 174, 206); font-weight:400;">for</span> (i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n; i++)
+               {
+                   p[i]. pid=<span style="color:rgb(240, 141, 73); font-weight:400;">1</span>;
+                   <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Burst time of the process:&quot;</span>);
+                   <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].btime);
+               }
+               p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].wtime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>;
+               p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].ttime=p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].btime;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">for</span>(i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n; i++)
+               {
+                   p[i].wtime=p[i<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>].wtime+p[i<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>].btime;
+                   p[i].ttime=p[i].wtime+p[i].btime;
+                   totttime+=p[i].ttime;
+                   totwtime+=p[i].wtime;
+               }
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Total waiting time :%d&quot;</span>, totwtime);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Average waiting time :%f&quot;</span>,(<span style="color:rgb(136, 174, 206); font-weight:400;">float</span>)totwtime/n);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Total turn around time :%d&quot;</span>,totttime);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Average turn around time: :%f&quot;</span>,(<span style="color:rgb(136, 174, 206); font-weight:400;">float</span>)totttime/n);
+           }</code></pre>
     </div>
 
-
-
-  
-
-<div class="container">
-    <h3 id="fcfs">FCFS</h3>
-    <pre>
-        <code id="htmlViewer" style="color:rgb(255, 255, 255); font-weight:400;background-color:rgb(28, 27, 27);background:rgb(28, 27, 27);display:block;padding: .5em;"><span style="color:rgb(136, 174, 206); font-weight:400;">#<span style="color:rgb(136, 174, 206); font-weight:400;">include</span><span style="color:rgb(181, 189, 104); font-weight:400;">&lt;stdio.h&gt;</span></span>
-       <span style="color:rgb(136, 174, 206); font-weight:400;">#<span style="color:rgb(136, 174, 206); font-weight:400;">include</span><span style="color:rgb(181, 189, 104); font-weight:400;">&lt;stdlib.h&gt;</span></span>
-       <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">struct</span> <span style="color:rgb(240, 141, 73); font-weight:400;">fcfs</span>
-       {</span>
-           <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> pid;
-           <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> btime;
-           <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> wtime;
-           <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> ttime;
-       }
-       p[<span style="color:rgb(240, 141, 73); font-weight:400;">10</span>];
-       <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">int</span> <span style="color:rgb(240, 141, 73); font-weight:400;">main</span> <span style="color:rgb(255, 255, 255); font-weight:400;">()</span>
-       </span>{
-           <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> i,n;
-           <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> totwtime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>, totttime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>;
-           <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n FCFS SCHEDULING...\n&quot;</span>);
-           <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;Enter the no of process:&quot;</span>);
-           <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
-           <span style="color:rgb(136, 174, 206); font-weight:400;">for</span> (i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n; i++)
-           {
-               p[i]. pid=<span style="color:rgb(240, 141, 73); font-weight:400;">1</span>;
-               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Burst time of the process:&quot;</span>);
-               <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].btime);
+    <div class="container">
+        <h3 id="sjf">SJF</h3>
+        <pre>
+            <code id="htmlViewer" style="color:rgb(255, 255, 255); font-weight:400;background-color:rgb(28, 27, 27);background:rgb(28, 27, 27);display:block;padding: .5em;"><span style="color:rgb(136, 174, 206); font-weight:400;">#<span style="color:rgb(136, 174, 206); font-weight:400;">include</span><span style="color:rgb(181, 189, 104); font-weight:400;">&lt;stdio.h&gt;</span></span>
+           <span style="color:rgb(136, 174, 206); font-weight:400;">#<span style="color:rgb(136, 174, 206); font-weight:400;">include</span><span style="color:rgb(181, 189, 104); font-weight:400;">&lt;stdlib.h&gt;</span></span>
+           <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">struct</span> <span style="color:rgb(240, 141, 73); font-weight:400;">sjf</span>
+           {</span>
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> pid;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> btime;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> wtime;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> ttime;
            }
-           p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].wtime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>;
-           p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].ttime=p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].btime;
-           <span style="color:rgb(136, 174, 206); font-weight:400;">for</span>(i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n; i++)
-           {
-               p[i].wtime=p[i<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>].wtime+p[i<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>].btime;
-               p[i].ttime=p[i].wtime+p[i].btime;
-               totttime+=p[i].ttime;
-               totwtime+=p[i].wtime;
-           }
-           <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Total waiting time :%d&quot;</span>, totwtime);
-           <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Average waiting time :%f&quot;</span>,(<span style="color:rgb(136, 174, 206); font-weight:400;">float</span>)totwtime/n);
-           <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Total turn around time :%d&quot;</span>,totttime);
-           <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Average turn around time: :%f&quot;</span>,(<span style="color:rgb(136, 174, 206); font-weight:400;">float</span>)totttime/n);
-       }</code></pre>
-</div>
-
-<div class="container">
-    <h3 id="sjf">SJF</h3>
-    <pre>
-        <code id="htmlViewer" style="color:rgb(51, 51, 51); font-weight:400;background-color:rgb(248, 248, 248);background:rgb(248, 248, 248);display:block;padding: .5em;"><span style="color:rgb(153, 153, 153); font-weight:700;">#<span style="color:rgb(153, 153, 153); font-weight:700;">include</span><span style="color:rgb(153, 153, 153); font-weight:700;">&lt;stdio.h&gt;</span></span>
-       <span style="color:rgb(153, 153, 153); font-weight:700;">#<span style="color:rgb(153, 153, 153); font-weight:700;">include</span><span style="color:rgb(153, 153, 153); font-weight:700;">&lt;stdlib.h&gt;</span></span>
-       <span style="color:rgb(51, 51, 51); font-weight:400;"><span style="color:rgb(51, 51, 51); font-weight:700;">struct</span> <span style="color:rgb(68, 85, 136); font-weight:700;">sjf</span>
-       {</span>
-       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> pid;
-       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> btime;
-       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> wtime;
-       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> ttime;
-       }
-       p[<span style="color:rgb(0, 128, 128); font-weight:400;">10</span>];
-       <span style="color:rgb(51, 51, 51); font-weight:400;"><span style="color:rgb(51, 51, 51); font-weight:700;">int</span> <span style="color:rgb(68, 85, 136); font-weight:700;">main</span> <span style="color:rgb(51, 51, 51); font-weight:400;">()</span>
-       </span>{
-       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> i,n,j;
-       <span style="color:rgb(51, 51, 51); font-weight:400;"><span style="color:rgb(51, 51, 51); font-weight:700;">struct</span> <span style="color:rgb(68, 85, 136); font-weight:700;">sjf</span> <span style="color:rgb(68, 85, 136); font-weight:700;">tmp</span>;</span>
-       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> totwtime=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>, totttime=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n SJF SCHEDULING \n&quot;</span>);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the no of process:&quot;</span>);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
-       <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i&lt;n;i++)
-       {
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter process id :&quot;</span>);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].pid);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter Burst time :&quot;</span>);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].btime);
-       }
-       p[<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>].wtime=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;
-       p[<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>].ttime=p[<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>].btime;
-       <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;n<span style="color:rgb(0, 128, 128); font-weight:400;">-1</span>;i++)
-       {
-       <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(j=i+<span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;j&lt;n;j++)
-       {
-       <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(p[i].btime&gt;p[j].btime)
-       {
-       tmp=p[i];
-       p[i]=p[j];
-       p[j]=tmp;
-       }}}
-       <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;n;i++)
-       {
-       p[i].wtime=p[i<span style="color:rgb(0, 128, 128); font-weight:400;">-1</span>].wtime+p[i<span style="color:rgb(0, 128, 128); font-weight:400;">-1</span>].btime;
-       p[i].ttime=p[i].wtime+p[i].btime;
-       totttime+=p[i].ttime;
-       totwtime+=p[i].wtime;
-       }
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;TOTAL WAITING TIME :%d\n&quot;</span>,totwtime);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;AVERAGE WAITING TIME : %d\n&quot;</span>,totwtime/n);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;TOTAL TURNAROUND TIME :%d\n&quot;</span>,totttime);
-       <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;AVERAGE TURNAROUND TIME:%d\n&quot;</span>,totttime/n);
-       }
-       </code></pre>
-    
-</div>
-<div class="container">
-    <h3 id="fifo">FIFO</h3>
-    <pre>
-        <code id="htmlViewer" style="color:rgb(51, 51, 51); font-weight:400;background-color:rgb(248, 248, 248);background:rgb(248, 248, 248);display:block;padding: .5em;"><span style="color:rgb(153, 153, 136); font-weight:400;">#include&lt;stdio.h&gt; </span>
-       void main() {
-           <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> i, j, k, f, pf=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>, count=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>, rs[<span style="color:rgb(0, 128, 128); font-weight:400;">25</span>], <span style="color:rgb(0, 153, 38); font-weight:400;">m[10]</span>, n; 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter the length of reference string -- &quot;</span>); 
-           scanf(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;n); <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter the reference string -- &quot;</span>); 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;n;i++) scanf(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;rs[i]); 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter no. of frames -- &quot;</span>); 
-           scanf(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;f); 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;f;i++) m[i]=-<span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n The Page Replacement Process is -- \n&quot;</span>);
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;n;i++) 
-           { 
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(k=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;k&lt;f;k++) 
-           { 
-               <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(<span style="color:rgb(0, 153, 38); font-weight:400;">m[k]</span>==rs[i]) 
-               <span style="color:rgb(51, 51, 51); font-weight:700;">break</span>; 
-               
-           } 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(k==f) 
-           { 
-               <span style="color:rgb(0, 153, 38); font-weight:400;">m[count++]</span>=rs[i];
-               pf++; 
-               
-           } 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(j=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;j&lt;f;j++)
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\t%d&quot;</span>,<span style="color:rgb(0, 153, 38); font-weight:400;">m[j]</span>); 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(k==f) 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\tPF No. %d&quot;</span>,pf); 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n&quot;</span>); 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(count==f) count=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; } 
-           <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n The number of Page Faults using FIFO are %d&quot;</span>,pf); 
-       }</code></pre>
-</div>
-
-<div class="container">
-    <h3 id="deadlock">DEADLOCK</h3>
-    <pre style="width:auto;overflow: auto;">
-        <code id="htmlViewer" style="color:rgb(51, 51, 51); font-weight:400;background-color:rgb(248, 248, 248);background:rgb(248, 248, 248);display:block;padding: .5em;"><span style="color:rgb(153, 153, 153); font-weight:700;">#<span style="color:rgb(153, 153, 153); font-weight:700;">include</span> <span style="color:rgb(153, 153, 153); font-weight:700;">&lt;stdio.h&gt;</span></span>
-       <span style="color:rgb(51, 51, 51); font-weight:400;"><span style="color:rgb(51, 51, 51); font-weight:700;">int</span> <span style="color:rgb(153, 0, 0); font-weight:700;">main</span><span style="color:rgb(51, 51, 51); font-weight:400;">()</span>
-       </span>{
-           <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> n, m, i, j, k, y,alloc[<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>][<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>],max[<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>][<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>],avail[<span style="color:rgb(0, 128, 128); font-weight:400;">50</span>],ind=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; 
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the  no of Proceses:&quot;</span>);
-           <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the  no of Resources:&quot;</span>);
-           <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;m);
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the Allocation Matrix:\n&quot;</span>);
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+           p[<span style="color:rgb(240, 141, 73); font-weight:400;">10</span>];
+           <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">int</span> <span style="color:rgb(240, 141, 73); font-weight:400;">main</span> <span style="color:rgb(255, 255, 255); font-weight:400;">()</span>
+           </span>{
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> i,n,j;
+               <span style="color:rgb(255, 255, 255); font-weight:400;"><span style="color:rgb(136, 174, 206); font-weight:400;">struct</span> <span style="color:rgb(240, 141, 73); font-weight:400;">sjf</span> <span style="color:rgb(240, 141, 73); font-weight:400;">tmp</span>;</span>
+               <span style="color:rgb(136, 174, 206); font-weight:400;">int</span> totwtime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>, totttime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>;
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n SJF SCHEDULING \n&quot;</span>);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;Enter the no of process:&quot;</span>);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
+               <span style="color:rgb(136, 174, 206); font-weight:400;">for</span> (i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n; i++)
                {
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
-                   <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;alloc[i][j]);
+                   <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Enter process id :&quot;</span>);
+                   <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].pid);
+                   <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;\n Enter Burst time :&quot;</span>);
+                   <span style="color:rgb(240, 141, 73); font-weight:400;">scanf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].btime);
                }
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the Max Matrix: \n&quot;</span>);
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+               p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].wtime=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>;
+               p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].ttime=p[<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>].btime;
+               <span style="color:rgb(136, 174, 206); font-weight:400;">for</span>(i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>; i++)
                {
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
-                   <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;max[i][j]);
-               }
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the Available Matrix \n&quot;</span>);
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;m;i++)
-           <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;avail[i]);
-           <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> finish[n], safesequence[n],work[m],need[n][m];
-       <span style="color:rgb(153, 153, 136); font-weight:400;">//calculating NEED matrix</span>
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
-           {
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
-                   need[i][j] = max[i][j] - alloc[i][j];
-           }
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;NEED matrix is&quot;</span>);
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
-           {
-               <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n&quot;</span>);
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
-                      <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot; %d  &quot;</span>,need[i][j]);
-             }
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;m;i++)
-           {
-               work[i]=avail[i];
-           }
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
-           {
-               finish[i] = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;
-           }
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (k = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; k &lt; n; k++) 
-               {
-               <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
-               {
-                   <span style="color:rgb(51, 51, 51); font-weight:700;">if</span> (finish[i] == <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>) 
+                   <span style="color:rgb(136, 174, 206); font-weight:400;">for</span>(j=i+<span style="color:rgb(240, 141, 73); font-weight:400;">1</span>; j&lt;n; j++)
                    {
-                       <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> flag = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;
-                       <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++) 
+                       <span style="color:rgb(136, 174, 206); font-weight:400;">if</span>(p[i].btime&gt;p[j].btime)
                        {
-                           <span style="color:rgb(51, 51, 51); font-weight:700;">if</span> (need[i][j] &gt; work[j])
-                           {
-                               flag = <span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;
-                                <span style="color:rgb(51, 51, 51); font-weight:700;">break</span>;
-                           }
-                       }
-                        <span style="color:rgb(51, 51, 51); font-weight:700;">if</span> (flag == <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>) {
-                           safesequence[ind++] = i;
-                              <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (y = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; y &lt; m; y++)
-                               work[y] += alloc[i][y];
-                           finish[i] = <span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;
+                           tmp=p[i];
+                           p[i]=p[j];
+                           p[j]=tmp;
                        }
                    }
                }
-           }
-           <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\nFollowing is the SAFE Sequence\n&quot;</span>);
-           <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt;= n - <span style="color:rgb(0, 128, 128); font-weight:400;">1</span>; i++)
-               <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot; P%d &quot;</span>, safesequence[i]);
-        <span style="color:rgb(51, 51, 51); font-weight:700;">return</span> <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;    
-       }
-       </code></pre>
-</div>
-
-<div class="container">
-    <h3 id="pass1">PASS 1 </h3>
-    <pre>
-        <code id="htmlViewer" style="color:rgb(74, 74, 74); font-weight:400;display:block;padding: .5em;">       <span style="color:rgb(74, 74, 74); font-weight:400;">#include&lt;stdio.h&gt;</span>
-              <span style="color:rgb(74, 74, 74); font-weight:400;">#include&lt;string.h&gt;</span>
-              <span style="color:rgb(74, 74, 74); font-weight:400;">#include&lt;stdlib.h&gt;</span>
-              void main() {
-                  char opcode[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], operand[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], label[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], code[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], mnemonic[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>];
-                  <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> locctr, start, <span style="color:rgb(74, 74, 74); font-weight:400;">length</span>;
-                  FILE *fp1, *fp2, *fp3, *fp4;
-                  fp1 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;input.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;r&quot;</span>);
-                  fp2 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;optab.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;r&quot;</span>);
-                  fp3 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;symtbl.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;w&quot;</span>);
-                  fp4 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;out.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;w&quot;</span>);
-                  fscanf(fp1, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s&quot;</span>, label, opcode, operand);
-                  <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;START&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                      start = atoi(operand);
-                      locctr = start;
-                      fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\t%s\t%s\t%s\n&quot;</span>, label, opcode, operand);
-                      fscanf(fp1, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s&quot;</span>, label, opcode, operand);
-                  }
-                  <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> {
-                      locctr = <span style="color:rgb(74, 74, 74); font-weight:400;">0</span>;
-                  }
-                  <span style="color:rgb(74, 74, 74); font-weight:400;">while</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;END&quot;</span>)!=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                      fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%d\t&quot;</span>, locctr);
-                      <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(label, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;**&quot;</span>)!=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                          fprintf(fp3, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%d\n&quot;</span>, label, locctr);
-                      }
-                      fscanf(fp2, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s&quot;</span>, code, mnemonic);
-                      <span style="color:rgb(74, 74, 74); font-weight:400;">while</span>(strcmp(code, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;END&quot;</span>)!=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                          <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, code)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                              locctr+=<span style="color:rgb(74, 74, 74); font-weight:400;">3</span>;
-                              <span style="color:rgb(74, 74, 74); font-weight:400;">break</span>;
-                          }
-                          fscanf(fp2, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s&quot;</span>, code, mnemonic);
-                      }
-                      <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;WORD&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                          locctr+=<span style="color:rgb(74, 74, 74); font-weight:400;">3</span>;
-                      }
-                      <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;RESW&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                          locctr+=(<span style="color:rgb(74, 74, 74); font-weight:400;">3</span>*(atoi(operand)));
-                      }
-                      <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;RESB&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                          locctr+=(atoi(operand));
-                      }
-                      <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;BYTE&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
-                          ++locctr;
-                      }
-                      fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s\t\n&quot;</span>, label, opcode, operand);
-                      fscanf(fp1, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s&quot;</span>, label, opcode, operand);
-                  }
-                  fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%d\t%s\t%s\t%s\n&quot;</span>, locctr, label, opcode, operand);
-                  <span style="color:rgb(74, 74, 74); font-weight:400;">length</span> = locctr-start;
-                  <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;The length of the code : %d\n&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">length</span>);
-                  fclose(fp1);
-                  fclose(fp2);
-                  fclose(fp3);
-                  fclose(fp4);
-              }</code></pre>
-
-    
-</div>
+               <span style="color:rgb(136, 174, 206); font-weight:400;">for</span>(i=<span style="color:rgb(240, 141, 73); font-weight:400;">0</span>; i&lt;n; i++)
+               {
+                   p[i].wtime=p[i<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>].wtime+p[i<span style="color:rgb(240, 141, 73); font-weight:400;">-1</span>].btime;
+                   p[i].ttime=p[i].wtime+p[i].btime;
+                   totttime+=p[i].ttime;
+                   totwtime+=p[i].wtime;
+               }
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;TOTAL WAITING TIME :%d\n&quot;</span>,totwtime);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;AVERAGE WAITING TIME : %d\n&quot;</span>,totwtime/n);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;TOTAL TURNAROUND TIME :%d\n&quot;</span>,totttime);
+               <span style="color:rgb(240, 141, 73); font-weight:400;">printf</span>(<span style="color:rgb(181, 189, 104); font-weight:400;">&quot;AVERAGE TURNAROUND TIME:%d\n&quot;</span>,totttime/n);
+           }</code></pre>
+        
+    </div>
+    <div class="container">
+        <h3 id="fifo">FIFO</h3>
+        <pre>
+            <code id="htmlViewer" style="color:rgb(51, 51, 51); font-weight:400;background-color:rgb(248, 248, 248);background:rgb(248, 248, 248);display:block;padding: .5em;"><span style="color:rgb(153, 153, 136); font-weight:400;">#include&lt;stdio.h&gt; </span>
+        void main() {
+            <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> i, j, k, f, pf=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>, count=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>, rs[<span style="color:rgb(0, 128, 128); font-weight:400;">25</span>], <span style="color:rgb(0, 153, 38); font-weight:400;">m[10]</span>, n; 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter the length of reference string -- &quot;</span>); 
+            scanf(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;n); <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter the reference string -- &quot;</span>); 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;n;i++) scanf(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;rs[i]); 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n Enter no. of frames -- &quot;</span>); 
+            scanf(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;f); 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;f;i++) m[i]=-<span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n The Page Replacement Process is -- \n&quot;</span>);
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;n;i++) 
+            { 
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(k=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;k&lt;f;k++) 
+            { 
+                <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(<span style="color:rgb(0, 153, 38); font-weight:400;">m[k]</span>==rs[i]) 
+                <span style="color:rgb(51, 51, 51); font-weight:700;">break</span>; 
                 
-         
-</body>
-</html>
+            } 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(k==f) 
+            { 
+                <span style="color:rgb(0, 153, 38); font-weight:400;">m[count++]</span>=rs[i];
+                pf++; 
+                
+            } 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(j=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;j&lt;f;j++)
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\t%d&quot;</span>,<span style="color:rgb(0, 153, 38); font-weight:400;">m[j]</span>); 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(k==f) 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\tPF No. %d&quot;</span>,pf); 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n&quot;</span>); 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">if</span>(count==f) count=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; } 
+            <span style="color:rgb(51, 51, 51); font-weight:700;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n The number of Page Faults using FIFO are %d&quot;</span>,pf); 
+        }</code></pre>
+    </div>
+
+    <div class="container">
+        <h3 id="deadlock">DEADLOCK</h3>
+        <pre style="width:auto;overflow: auto;">
+            <code id="htmlViewer" style="color:rgb(51, 51, 51); font-weight:400;background-color:rgb(248, 248, 248);background:rgb(248, 248, 248);display:block;padding: .5em;"><span style="color:rgb(153, 153, 153); font-weight:700;">#<span style="color:rgb(153, 153, 153); font-weight:700;">include</span> <span style="color:rgb(153, 153, 153); font-weight:700;">&lt;stdio.h&gt;</span></span>
+        <span style="color:rgb(51, 51, 51); font-weight:400;"><span style="color:rgb(51, 51, 51); font-weight:700;">int</span> <span style="color:rgb(153, 0, 0); font-weight:700;">main</span><span style="color:rgb(51, 51, 51); font-weight:400;">()</span>
+        </span>{
+            <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> n, m, i, j, k, y,alloc[<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>][<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>],max[<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>][<span style="color:rgb(0, 128, 128); font-weight:400;">20</span>],avail[<span style="color:rgb(0, 128, 128); font-weight:400;">50</span>],ind=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; 
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the  no of Proceses:&quot;</span>);
+            <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the  no of Resources:&quot;</span>);
+            <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;m);
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the Allocation Matrix:\n&quot;</span>);
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+                {
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
+                    <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;alloc[i][j]);
+                }
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the Max Matrix: \n&quot;</span>);
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+                {
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
+                    <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;max[i][j]);
+                }
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;Enter the Available Matrix \n&quot;</span>);
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;m;i++)
+            <span style="color:rgb(0, 134, 179); font-weight:400;">scanf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;%d&quot;</span>,&amp;avail[i]);
+            <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> finish[n], safesequence[n],work[m],need[n][m];
+        <span style="color:rgb(153, 153, 136); font-weight:400;">//calculating NEED matrix</span>
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+            {
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
+                    need[i][j] = max[i][j] - alloc[i][j];
+            }
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;NEED matrix is&quot;</span>);
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+            {
+                <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\n&quot;</span>);
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++)
+                        <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot; %d  &quot;</span>,need[i][j]);
+                }
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span>(i=<span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;i&lt;m;i++)
+            {
+                work[i]=avail[i];
+            }
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+            {
+                finish[i] = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;
+            }
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (k = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; k &lt; n; k++) 
+                {
+                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt; n; i++) 
+                {
+                    <span style="color:rgb(51, 51, 51); font-weight:700;">if</span> (finish[i] == <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>) 
+                    {
+                        <span style="color:rgb(51, 51, 51); font-weight:700;">int</span> flag = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;
+                        <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (j = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; j &lt; m; j++) 
+                        {
+                            <span style="color:rgb(51, 51, 51); font-weight:700;">if</span> (need[i][j] &gt; work[j])
+                            {
+                                flag = <span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;
+                                    <span style="color:rgb(51, 51, 51); font-weight:700;">break</span>;
+                            }
+                        }
+                            <span style="color:rgb(51, 51, 51); font-weight:700;">if</span> (flag == <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>) {
+                            safesequence[ind++] = i;
+                                <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (y = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; y &lt; m; y++)
+                                work[y] += alloc[i][y];
+                            finish[i] = <span style="color:rgb(0, 128, 128); font-weight:400;">1</span>;
+                        }
+                    }
+                }
+            }
+            <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot;\nFollowing is the SAFE Sequence\n&quot;</span>);
+            <span style="color:rgb(51, 51, 51); font-weight:700;">for</span> (i = <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>; i &lt;= n - <span style="color:rgb(0, 128, 128); font-weight:400;">1</span>; i++)
+                <span style="color:rgb(0, 134, 179); font-weight:400;">printf</span>(<span style="color:rgb(221, 17, 68); font-weight:400;">&quot; P%d &quot;</span>, safesequence[i]);
+            <span style="color:rgb(51, 51, 51); font-weight:700;">return</span> <span style="color:rgb(0, 128, 128); font-weight:400;">0</span>;    
+        }
+        </code></pre>
+    </div>
+
+    <div class="container">
+        <h3 id="pass1">PASS 1 </h3>
+        <pre>
+            <code id="htmlViewer" style="color:rgb(74, 74, 74); font-weight:400;display:block;padding: .5em;">       <span style="color:rgb(74, 74, 74); font-weight:400;">#include&lt;stdio.h&gt;</span>
+                <span style="color:rgb(74, 74, 74); font-weight:400;">#include&lt;string.h&gt;</span>
+                <span style="color:rgb(74, 74, 74); font-weight:400;">#include&lt;stdlib.h&gt;</span>
+                void main() {
+                    char opcode[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], operand[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], label[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], code[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>], mnemonic[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>];
+                    <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> locctr, start, <span style="color:rgb(74, 74, 74); font-weight:400;">length</span>;
+                    FILE *fp1, *fp2, *fp3, *fp4;
+                    fp1 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;input.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;r&quot;</span>);
+                    fp2 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;optab.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;r&quot;</span>);
+                    fp3 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;symtbl.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;w&quot;</span>);
+                    fp4 = fopen(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;out.txt&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;w&quot;</span>);
+                    fscanf(fp1, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s&quot;</span>, label, opcode, operand);
+                    <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;START&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                        start = atoi(operand);
+                        locctr = start;
+                        fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\t%s\t%s\t%s\n&quot;</span>, label, opcode, operand);
+                        fscanf(fp1, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s&quot;</span>, label, opcode, operand);
+                    }
+                    <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> {
+                        locctr = <span style="color:rgb(74, 74, 74); font-weight:400;">0</span>;
+                    }
+                    <span style="color:rgb(74, 74, 74); font-weight:400;">while</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;END&quot;</span>)!=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                        fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%d\t&quot;</span>, locctr);
+                        <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(label, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;**&quot;</span>)!=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                            fprintf(fp3, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%d\n&quot;</span>, label, locctr);
+                        }
+                        fscanf(fp2, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s&quot;</span>, code, mnemonic);
+                        <span style="color:rgb(74, 74, 74); font-weight:400;">while</span>(strcmp(code, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;END&quot;</span>)!=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                            <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, code)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                                locctr+=<span style="color:rgb(74, 74, 74); font-weight:400;">3</span>;
+                                <span style="color:rgb(74, 74, 74); font-weight:400;">break</span>;
+                            }
+                            fscanf(fp2, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s&quot;</span>, code, mnemonic);
+                        }
+                        <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;WORD&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                            locctr+=<span style="color:rgb(74, 74, 74); font-weight:400;">3</span>;
+                        }
+                        <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;RESW&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                            locctr+=(<span style="color:rgb(74, 74, 74); font-weight:400;">3</span>*(atoi(operand)));
+                        }
+                        <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;RESB&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                            locctr+=(atoi(operand));
+                        }
+                        <span style="color:rgb(74, 74, 74); font-weight:400;">else</span> <span style="color:rgb(74, 74, 74); font-weight:400;">if</span>(strcmp(opcode, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;BYTE&quot;</span>)==<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>) {
+                            ++locctr;
+                        }
+                        fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s\t\n&quot;</span>, label, opcode, operand);
+                        fscanf(fp1, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%s\t%s\t%s&quot;</span>, label, opcode, operand);
+                    }
+                    fprintf(fp4, <span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%d\t%s\t%s\t%s\n&quot;</span>, locctr, label, opcode, operand);
+                    <span style="color:rgb(74, 74, 74); font-weight:400;">length</span> = locctr-start;
+                    <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;The length of the code : %d\n&quot;</span>, <span style="color:rgb(74, 74, 74); font-weight:400;">length</span>);
+                    fclose(fp1);
+                    fclose(fp2);
+                    fclose(fp3);
+                    fclose(fp4);
+                }</code></pre>
+
+        
+    </div>
+                    
+            
+    </body>
+    </html>
