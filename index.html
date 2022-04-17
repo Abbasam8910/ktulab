@@ -4,8 +4,9 @@
   <title>System settings</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     
@@ -27,49 +28,45 @@
 
 <div class="container">
     <h3 id="fcfs">FCFS</h3>
-    
-    <div style="background-color: #1e1e1e; border-radius: 9px; border-width: .1em .1em .1em .1em; border: 0.1em solid gray; overflow: auto; padding: 0.2em 0.6em; width: auto;">
-        <pre>
-            <code id="htmlViewer" style="color:rgb(220, 220, 220); font-weight:400;background-color:rgb(30, 30, 30);background:rgb(30, 30, 30);display:block;padding: .5em;"><span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&lt;stdio.h&gt;</span></span>
-                  <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&lt;stdlib.h&gt;</span></span>
-                  <span style="color:rgb(184, 215, 163); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">struct</span> <span style="color:rgb(220, 220, 220); font-weight:400;">fcfs</span>
-                  {</span>
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> pid;
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> btime;
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> wtime;
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> ttime;
-                  }
-                  p[<span style="color:rgb(184, 215, 163); font-weight:400;">10</span>];
-                  <span style="color:rgb(220, 220, 220); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">int</span> <span style="color:rgb(220, 220, 220); font-weight:400;">main</span> <span style="color:rgb(220, 220, 220); font-weight:400;">()</span>
-                  </span>{
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> i,n;
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> totwtime=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>, totttime=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n FCFS SCHEDULING...\n&quot;</span>);
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Enter the no of process:&quot;</span>);
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">scanf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">for</span> (i=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>; i&lt;n;i++)
-                  {
-                  p[i]. pid=<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>;
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n Burst time of the process:&quot;</span>);
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">scanf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].btime);
-                  }
-                  p[<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>].wtime=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
-                  p[<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>].ttime=p[<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>].btime;
-                  <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(i=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;i&lt;n;i++)
-                  {
-                  p[i].wtime=p[i<span style="color:rgb(184, 215, 163); font-weight:400;">-1</span>].wtime+p[i<span style="color:rgb(184, 215, 163); font-weight:400;">-1</span>].btime;
-                  p[i].ttime=p[i].wtime+p[i].btime;
-                  totttime+=p[i].ttime;
-                  totwtime+=p[i].wtime;
-                  }
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n Total waiting time :%d&quot;</span>, totwtime);
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n Average waiting time :%f&quot;</span>,(<span style="color:rgb(86, 156, 214); font-weight:400;">float</span>)totwtime/n);
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n Total turn around time :%d&quot;</span>,totttime);
-                  <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n Average turn around time: :%f&quot;</span>,(<span style="color:rgb(86, 156, 214); font-weight:400;">float</span>)totttime/n);
-                  }
-                  </code></pre>
-
-</div>
+    <pre>
+        <code id="htmlViewer" style="color:rgb(74, 74, 74); font-weight:400;display:block;padding: .5em;"><span style="color:rgb(74, 74, 74); font-weight:400;">#<span style="color:rgb(74, 74, 74); font-weight:400;">include</span><span style="color:rgb(74, 74, 74); font-weight:400;">&lt;stdio.h&gt;</span></span>
+              <span style="color:rgb(74, 74, 74); font-weight:400;">#<span style="color:rgb(74, 74, 74); font-weight:400;">include</span><span style="color:rgb(74, 74, 74); font-weight:400;">&lt;stdlib.h&gt;</span></span>
+              <span style="color:rgb(74, 74, 74); font-weight:400;"><span style="color:rgb(74, 74, 74); font-weight:400;">struct</span> <span style="color:rgb(74, 74, 74); font-weight:400;">fcfs</span>
+              {</span>
+              <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> pid;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> btime;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> wtime;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> ttime;
+              }
+              p[<span style="color:rgb(74, 74, 74); font-weight:400;">10</span>];
+              <span style="color:rgb(74, 74, 74); font-weight:400;"><span style="color:rgb(74, 74, 74); font-weight:400;">int</span> <span style="color:rgb(74, 74, 74); font-weight:400;">main</span> <span style="color:rgb(74, 74, 74); font-weight:400;">()</span>
+              </span>{
+              <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> i,n;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">int</span> totwtime=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>, totttime=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\n FCFS SCHEDULING...\n&quot;</span>);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;Enter the no of process:&quot;</span>);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">scanf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%d&quot;</span>,&amp;n);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">for</span> (i=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>; i&lt;n;i++)
+              {
+              p[i]. pid=<span style="color:rgb(74, 74, 74); font-weight:400;">1</span>;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\n Burst time of the process:&quot;</span>);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">scanf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;%d&quot;</span>,&amp;p[i].btime);
+              }
+              p[<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>].wtime=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>;
+              p[<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>].ttime=p[<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>].btime;
+              <span style="color:rgb(74, 74, 74); font-weight:400;">for</span>(i=<span style="color:rgb(74, 74, 74); font-weight:400;">0</span>;i&lt;n;i++)
+              {
+              p[i].wtime=p[i<span style="color:rgb(74, 74, 74); font-weight:400;">-1</span>].wtime+p[i<span style="color:rgb(74, 74, 74); font-weight:400;">-1</span>].btime;
+              p[i].ttime=p[i].wtime+p[i].btime;
+              totttime+=p[i].ttime;
+              totwtime+=p[i].wtime;
+              }
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\n Total waiting time :%d&quot;</span>, totwtime);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\n Average waiting time :%f&quot;</span>,(<span style="color:rgb(74, 74, 74); font-weight:400;">float</span>)totwtime/n);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\n Total turn around time :%d&quot;</span>,totttime);
+              <span style="color:rgb(74, 74, 74); font-weight:400;">printf</span>(<span style="color:rgb(74, 74, 74); font-weight:400;">&quot;\n Average turn around time: :%f&quot;</span>,(<span style="color:rgb(74, 74, 74); font-weight:400;">float</span>)totttime/n);
+              }
+              </code></pre>
 </div>
 
 <div class="container">
