@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>System settings</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+  <div class="container">
+
+    <h3>Index</h3>
+    <a href="#fcfs">1.Distance Vector</a> <br>
+    <a href="#sjf">2.Leaky Bucket</a><br>
+    <a href="#fifo">3.UDP</a> <br>
+    <a href="#deadlock">4.TCP</a><br>
+    <a href="#"> </a><br>
+    <a href="#"></a><br>
+
+    </div>
+
+<style>
+    pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #1E1E1E;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+</style>
+
+  
+
+<div class="container">
+    <h3 id="fcfs">Distance Vector</h3>
+    <pre>
+        <code id="htmlViewer" style="color:rgb(220, 220, 220); font-weight:400;background-color:rgb(30, 30, 30);background:rgb(30, 30, 30);display:block;padding: .5em;"><span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&lt;stdio.h&gt;</span></span>
+       <span style="color:rgb(184, 215, 163); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">struct</span> <span style="color:rgb(220, 220, 220); font-weight:400;">node</span>
+       {</span>
+           <span style="color:rgb(86, 156, 214); font-weight:400;">unsigned</span> dist[<span style="color:rgb(184, 215, 163); font-weight:400;">20</span>];
+           <span style="color:rgb(86, 156, 214); font-weight:400;">unsigned</span> from[<span style="color:rgb(184, 215, 163); font-weight:400;">20</span>];
+       }rt[<span style="color:rgb(184, 215, 163); font-weight:400;">10</span>];
+       <span style="color:rgb(220, 220, 220); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">int</span> <span style="color:rgb(220, 220, 220); font-weight:400;">main</span><span style="color:rgb(220, 220, 220); font-weight:400;">()</span>
+       </span>{
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> costmat[<span style="color:rgb(184, 215, 163); font-weight:400;">20</span>][<span style="color:rgb(184, 215, 163); font-weight:400;">20</span>];
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> nodes,i,j,k,count=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\nEnter the number of nodes : &quot;</span>);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">scanf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;%d&quot;</span>,&amp;nodes);<span style="color:rgb(87, 166, 74); font-weight:400;">//Enter the nodes</span>
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\nEnter the cost matrix :\n&quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(i=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;i&lt;nodes;i++)
+           {
+               <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(j=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;j&lt;nodes;j++)
+               {
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">scanf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;%d&quot;</span>,&amp;costmat[i][j]);
+                   costmat[i][i]=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+                   rt[i].dist[j]=costmat[i][j];<span style="color:rgb(87, 166, 74); font-weight:400;">//initialise the distance equal to cost matrix</span>
+                   rt[i].from[j]=j;
+               }
+           }
+               <span style="color:rgb(86, 156, 214); font-weight:400;">do</span>
+               {
+                   count=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(i=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;i&lt;nodes;i++)<span style="color:rgb(87, 166, 74); font-weight:400;">//We choose arbitary vertex k and we calculate the direct distance from the node i to k using the cost matrix</span>
+                   <span style="color:rgb(87, 166, 74); font-weight:400;">//and add the distance from k to node j</span>
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(j=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;j&lt;nodes;j++)
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(k=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;k&lt;nodes;k++)
+                       <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(rt[i].dist[j]&gt;costmat[i][k]+rt[k].dist[j])
+                       {<span style="color:rgb(87, 166, 74); font-weight:400;">//We calculate the minimum distance</span>
+                           rt[i].dist[j]=rt[i].dist[k]+rt[k].dist[j];
+                           rt[i].from[j]=k;
+                           count++;
+                       }
+               }<span style="color:rgb(86, 156, 214); font-weight:400;">while</span>(count!=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(i=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;i&lt;nodes;i++)
+               {
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n\n For router %d\n&quot;</span>,i+<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">for</span>(j=<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;j&lt;nodes;j++)
+                   {
+                       <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\t\nnode %d via %d Distance %d &quot;</span>,j+<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>,rt[i].from[j]+<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>,rt[i].dist[j]);
+                   }
+               }
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n\n&quot;</span>);
+       }
+           <span style="color:rgb(87, 166, 74); font-weight:400;">//getch(); }</span>
+       
+       output
+       
+       gcc dv.c
+       ./a.out</code></pre>
+</div>
+
+<div class="container">
+    <h3 id="sjf">Leaky Bucket</h3>
+    <pre>
+        <code id="htmlViewer" style="color:rgb(220, 220, 220); font-weight:400;background-color:rgb(30, 30, 30);background:rgb(30, 30, 30);display:block;padding: .5em;"><span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;stdio.h&gt;</span>
+       <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> main(){
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> incoming, outgoing, buck_size, n, store = <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Enter bucket size, outgoing rate and no of inputs: &quot;</span>);
+           scanf(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;%d %d %d&quot;</span>, &amp;buck_size, &amp;outgoing, &amp;n);
+       
+           <span style="color:rgb(86, 156, 214); font-weight:400;">while</span> (n != <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+               <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Enter the incoming packet size : &quot;</span>);
+               scanf(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;%d&quot;</span>, &amp;incoming);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Incoming packet size %d\n&quot;</span>, incoming);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (incoming &lt;= (buck_size - store)){
+                   store += incoming;
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Bucket buffer size %d out of %d\n&quot;</span>, store, buck_size);
+               } <span style="color:rgb(86, 156, 214); font-weight:400;">else</span> {
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Dropped %d no of packets\n&quot;</span>, incoming - (buck_size - store));
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Bucket buffer size %d out of %d\n&quot;</span>, store, buck_size);
+                   store = buck_size;
+               }
+               store = store - outgoing;
+               <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;After outgoing %d packets left out of %d in buffer\n&quot;</span>, store, buck_size);
+               n--;
+           }
+       }
+       Output
+       
+       gcc leaky.c
+       ./a.out
+       </code></pre>
+    
+</div>
+<div class="container">
+    <h3 id="fifo">UDP</h3>
+    <pre>
+        <code id="htmlViewer" style="color:rgb(220, 220, 220); font-weight:400;background-color:rgb(30, 30, 30);background:rgb(30, 30, 30);display:block;padding: .5em;">udpclient.c
+       
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;stdio.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;string.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;sys/socket.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;stdlib.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;netdb.h&gt;</span>
+       <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> main(<span style="color:rgb(86, 156, 214); font-weight:400;">int</span> argc,char* argv[])
+       {
+           struct sockaddr_in server,client;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(argc!=<span style="color:rgb(184, 215, 163); font-weight:400;">3</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Input format not correct&quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> sockfd=<span style="color:rgb(86, 156, 214); font-weight:400;">socket</span>(AF_INET,SOCK_DGRAM,<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(sockfd==-<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error in socket();&quot;</span>);
+           server.sin_family=AF_INET;
+           server.sin_addr.s_addr=INADDR_ANY;
+           server.sin_port=htons(atoi(argv[<span style="color:rgb(184, 215, 163); font-weight:400;">2</span>]));
+           char buffer[<span style="color:rgb(184, 215, 163); font-weight:400;">100</span>];
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Enter a message to be sent to server: &quot;</span>);
+           fgets(buffer,<span style="color:rgb(184, 215, 163); font-weight:400;">100</span>,stdin);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(sendto(sockfd,buffer,sizeof(buffer),<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>,(struct sockaddr*)&amp;server,sizeof(server))&lt;<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error in sendto&quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">return</span> <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+       }
+       
+        /*OUTPUT
+       
+       gcc udpc.c -o c
+       ./c localhost <span style="color:rgb(184, 215, 163); font-weight:400;">2050</span>
+       Enter a message to be sent to server: hai
+       
+       
+       udpserver.c
+       
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;stdio.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;string.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;sys/socket.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;stdlib.h&gt;</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">#include&lt;netdb.h&gt;</span>
+       <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> main(<span style="color:rgb(86, 156, 214); font-weight:400;">int</span> argc,char* argv[])
+       {
+           struct sockaddr_in server,client;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(argc!=<span style="color:rgb(184, 215, 163); font-weight:400;">2</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Input format not correct&quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> sockfd=<span style="color:rgb(86, 156, 214); font-weight:400;">socket</span>(AF_INET,SOCK_DGRAM,<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(sockfd==-<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error in socket();&quot;</span>);
+           server.sin_family=AF_INET;
+           server.sin_addr.s_addr=INADDR_ANY;
+           server.sin_port=htons(atoi(argv[<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>]));
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(<span style="color:rgb(86, 156, 214); font-weight:400;">bind</span>(sockfd,(struct sockaddr*)&amp;server,sizeof(server))&lt;<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error in blind()! \n&quot;</span>);
+           char buffer[<span style="color:rgb(184, 215, 163); font-weight:400;">100</span>];
+           socklen_t server_len=sizeof(server);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;server waiting.....&quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(recvfrom(sockfd,buffer,<span style="color:rgb(184, 215, 163); font-weight:400;">100</span>,<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>,(struct sockaddr*)&amp;server,&amp;server_len)&lt;<span style="color:rgb(184, 215, 163); font-weight:400;">0</span>)
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error in recvfrom()!&quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Got a datagram:%s&quot;</span>,buffer);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">return</span> <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+       }
+       
+       OUTPUT
+       
+        gcc udps.c -o s
+        ./s <span style="color:rgb(184, 215, 163); font-weight:400;">2050</span>
+       
+       server waiting.....Got a datagram:hai
+       </code></pre>
+</div>
+
+<div class="container">
+    <h3 id="deadlock">TCP</h3>
+    <pre>
+        <code id="htmlViewer" style="color:rgb(220, 220, 220); font-weight:400;background-color:rgb(30, 30, 30);background:rgb(30, 30, 30);display:block;padding: .5em;">TCP MULTIUSER SERVER – multiuserserver.c
+       
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;stdio.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;stdlib.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;sys/types.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;sys/socket.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;string.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;netinet/in.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">define</span> PORT 4444</span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">define</span> BUF_SIZE 2000</span>
+       
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">define</span> CLADDR_LEN 100</span>
+       <span style="color:rgb(220, 220, 220); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">void</span> <span style="color:rgb(220, 220, 220); font-weight:400;">main</span><span style="color:rgb(220, 220, 220); font-weight:400;">()</span> </span>{
+           <span style="color:rgb(184, 215, 163); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">struct</span> <span style="color:rgb(220, 220, 220); font-weight:400;">sockaddr_in</span> <span style="color:rgb(220, 220, 220); font-weight:400;">addr</span>, <span style="color:rgb(220, 220, 220); font-weight:400;">cl_addr</span>;</span>
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> sockfd, len, ret, newsockfd;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">char</span> buffer[BUF_SIZE];
+           <span style="color:rgb(86, 156, 214); font-weight:400;">pid_t</span> childpid;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">char</span> clientAddr[CLADDR_LEN];
+           sockfd = <span style="color:rgb(78, 201, 176); font-weight:400;">socket</span>(AF_INET, SOCK_STREAM, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (sockfd &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+               <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error creating socket!\n&quot;</span>);
+               <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+           }
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Socket created...\n&quot;</span>);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">memset</span>(&amp;addr, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>, <span style="color:rgb(78, 201, 176); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">sizeof</span></span>(addr));
+           addr.sin_family = AF_INET;
+           addr.sin_addr.s_addr = INADDR_ANY;
+           addr.sin_port = PORT;
+           ret = <span style="color:rgb(78, 201, 176); font-weight:400;">bind</span>(sockfd, (struct sockaddr *) &amp;addr, <span style="color:rgb(78, 201, 176); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">sizeof</span></span>(addr));
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (ret &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+               <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error binding!\n&quot;</span>);
+               <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+           }
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Binding done...\n&quot;</span>);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Waiting for a connection...\n&quot;</span>);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">listen</span>(sockfd, <span style="color:rgb(184, 215, 163); font-weight:400;">5</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">for</span> (;;) { <span style="color:rgb(87, 166, 74); font-weight:400;">//infinite loop</span>
+               len = <span style="color:rgb(78, 201, 176); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">sizeof</span></span>(cl_addr);
+               newsockfd = <span style="color:rgb(78, 201, 176); font-weight:400;">accept</span>(sockfd, (struct sockaddr *) &amp;cl_addr, &amp;len);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (newsockfd &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error accepting connection!\n&quot;</span>);
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+               }
+               <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Connection accepted...\n&quot;</span>);
+               <span style="color:rgb(78, 201, 176); font-weight:400;">inet_ntop</span>(AF_INET, &amp;(cl_addr.sin_addr), clientAddr, CLADDR_LEN);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> ((childpid = fork()) == <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) { <span style="color:rgb(87, 166, 74); font-weight:400;">//creating a child process</span>
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">close</span>(sockfd);
+       <span style="color:rgb(87, 166, 74); font-weight:400;">//stop listening for new connections by the main process.</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">//the child will continue to listen.</span>
+       <span style="color:rgb(87, 166, 74); font-weight:400;">//the main process now handles the connected client.</span>
+                   <span style="color:rgb(86, 156, 214); font-weight:400;">for</span> (;;) {
+                       <span style="color:rgb(78, 201, 176); font-weight:400;">memset</span>(buffer, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>, BUF_SIZE);
+                       ret = <span style="color:rgb(78, 201, 176); font-weight:400;">recv</span>(newsockfd, buffer, BUF_SIZE, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+                       <span style="color:rgb(86, 156, 214); font-weight:400;">if</span>(ret &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+                           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error receiving data!\n&quot;</span>);
+                           <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+                       }
+                       <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Received data from %s: %s\n&quot;</span>, clientAddr, buffer);
+                       ret = <span style="color:rgb(78, 201, 176); font-weight:400;">send</span>(newsockfd, buffer, BUF_SIZE, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+                       <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (ret &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+                           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error sending data!\n&quot;</span>);
+                           <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+                       }
+                       <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Sent data to %s: %s\n&quot;</span>, clientAddr, buffer);
+                   }
+               }
+               <span style="color:rgb(78, 201, 176); font-weight:400;">close</span>(newsockfd);
+           }
+       }
+       
+       
+       TCP MULTIUSER CLIENT – multiuserclient.c
+       
+       
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;stdio.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;stdlib.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;sys/types.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;sys/socket.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;string.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;netinet/in.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">include</span><span style="color:rgb(214, 157, 133); font-weight:400;">&quot;netdb.h&quot;</span></span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">define</span> PORT 4444</span>
+       <span style="color:rgb(155, 155, 155); font-weight:400;">#<span style="color:rgb(155, 155, 155); font-weight:400;">define</span> BUF_SIZE 2000</span>
+       <span style="color:rgb(220, 220, 220); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">int</span> <span style="color:rgb(220, 220, 220); font-weight:400;">main</span><span style="color:rgb(220, 220, 220); font-weight:400;">(<span style="color:rgb(86, 156, 214); font-weight:400;">int</span> argc, <span style="color:rgb(86, 156, 214); font-weight:400;">char</span>**argv)</span> </span>{
+           <span style="color:rgb(184, 215, 163); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">struct</span> <span style="color:rgb(220, 220, 220); font-weight:400;">sockaddr_in</span> <span style="color:rgb(220, 220, 220); font-weight:400;">addr</span>, <span style="color:rgb(220, 220, 220); font-weight:400;">cl_addr</span>;</span>
+           <span style="color:rgb(86, 156, 214); font-weight:400;">int</span> sockfd, ret;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">char</span> buffer[BUF_SIZE];
+           <span style="color:rgb(184, 215, 163); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">struct</span> <span style="color:rgb(220, 220, 220); font-weight:400;">hostent</span> * <span style="color:rgb(220, 220, 220); font-weight:400;">server</span>;</span>
+           <span style="color:rgb(86, 156, 214); font-weight:400;">char</span> * serverAddr;
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (argc &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">2</span>) {
+               <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;usage: client &lt; ip address &gt;\n&quot;</span>);
+               <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+           }
+           serverAddr = argv[<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>];
+           sockfd = <span style="color:rgb(78, 201, 176); font-weight:400;">socket</span>(AF_INET, SOCK_STREAM, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (sockfd &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+               <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error creating socket!\n&quot;</span>);
+               <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+           }
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Socket created...\n&quot;</span>);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">memset</span>(&amp;addr, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>, <span style="color:rgb(78, 201, 176); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">sizeof</span></span>(addr));
+           addr.sin_family = AF_INET;
+           addr.sin_addr.s_addr = <span style="color:rgb(78, 201, 176); font-weight:400;">inet_addr</span>(serverAddr);
+           addr.sin_port = PORT;
+           ret = <span style="color:rgb(78, 201, 176); font-weight:400;">connect</span>(sockfd, (struct sockaddr *) &amp;addr, <span style="color:rgb(78, 201, 176); font-weight:400;"><span style="color:rgb(86, 156, 214); font-weight:400;">sizeof</span></span>(addr));
+           <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (ret &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+               <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error connecting to the server!\n&quot;</span>);
+               <span style="color:rgb(78, 201, 176); font-weight:400;">exit</span>(<span style="color:rgb(184, 215, 163); font-weight:400;">1</span>);
+           }
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Connected to the server...\n&quot;</span>);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">memset</span>(buffer, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>, BUF_SIZE);
+           <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Enter your message(s): &quot;</span>);
+           <span style="color:rgb(86, 156, 214); font-weight:400;">while</span> (<span style="color:rgb(78, 201, 176); font-weight:400;">fgets</span>(buffer, BUF_SIZE, stdin) != <span style="color:rgb(86, 156, 214); font-weight:400;">NULL</span>) {
+               ret = <span style="color:rgb(78, 201, 176); font-weight:400;">send</span>(sockfd, buffer, BUF_SIZE, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (ret &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error sending data!\n\t-%s&quot;</span>, buffer);
+               }
+               ret = <span style="color:rgb(78, 201, 176); font-weight:400;">recv</span>(sockfd, buffer, BUF_SIZE, <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>);
+               <span style="color:rgb(86, 156, 214); font-weight:400;">if</span> (ret &lt; <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>) {
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Error receiving data!\n&quot;</span>);
+               }
+               <span style="color:rgb(86, 156, 214); font-weight:400;">else</span> {
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;Received: &quot;</span>);
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">fputs</span>(buffer, stdout);
+                   <span style="color:rgb(78, 201, 176); font-weight:400;">printf</span>(<span style="color:rgb(214, 157, 133); font-weight:400;">&quot;\n&quot;</span>);
+               }
+           }
+           <span style="color:rgb(86, 156, 214); font-weight:400;">return</span> <span style="color:rgb(184, 215, 163); font-weight:400;">0</span>;
+       }
+       
+       
+       OUTPUT
+       
+       
+       Running multiuserchat server
+       
+       
+       user@user-desktop:~/Desktop/multiuser$ gcc tcpservernew.c -o s
+       user@user-desktop:~/Desktop/multiuser$ ./s
+       Socket created...
+       Binding done...
+       Waiting <span style="color:rgb(86, 156, 214); font-weight:400;">for</span> a connection...
+       Connection accepted...
+       Received data from <span style="color:rgb(184, 215, 163); font-weight:400;">192.168</span><span style="color:rgb(184, 215, 163); font-weight:400;">.200</span><span style="color:rgb(184, 215, 163); font-weight:400;">.33</span>: lmcst
+       Sent data to <span style="color:rgb(184, 215, 163); font-weight:400;">192.168</span><span style="color:rgb(184, 215, 163); font-weight:400;">.200</span><span style="color:rgb(184, 215, 163); font-weight:400;">.33</span>: lmcst
+       Connection accepted...
+       Received data from <span style="color:rgb(184, 215, 163); font-weight:400;">192.168</span><span style="color:rgb(184, 215, 163); font-weight:400;">.200</span><span style="color:rgb(184, 215, 163); font-weight:400;">.33</span>: s6cs students
+       Sent data to <span style="color:rgb(184, 215, 163); font-weight:400;">192.168</span><span style="color:rgb(184, 215, 163); font-weight:400;">.200</span><span style="color:rgb(184, 215, 163); font-weight:400;">.33</span>: s6cs students
+       
+       
+       Running multiuser chat client <span style="color:rgb(184, 215, 163); font-weight:400;">1</span>
+       
+       
+       
+       user@user-desktop:~/Desktop/multiuser$ gcc tcpclientnew.c -o c1
+       user@user-desktop:~/Desktop/multiuser$ ./c1 <span style="color:rgb(184, 215, 163); font-weight:400;">192.168</span><span style="color:rgb(184, 215, 163); font-weight:400;">.200</span><span style="color:rgb(184, 215, 163); font-weight:400;">.33</span>
+       Socket created...
+       Connected to the server...
+       <span style="color:rgb(220, 220, 220); font-weight:400;">Enter your <span style="color:rgb(220, 220, 220); font-weight:400;">message</span><span style="color:rgb(220, 220, 220); font-weight:400;">(s)</span>: lmcst
+       Received: lmcst
+       
+       Running multiuser chat client <span style="color:rgb(184, 215, 163); font-weight:400;">2</span>
+       
+       
+       user@user-desktop:~/Desktop/multiuser$ gcc tcpclientnew.c -o c2
+       user@user-desktop:~/Desktop/multiuser$ ./c2 <span style="color:rgb(184, 215, 163); font-weight:400;">192.168</span><span style="color:rgb(184, 215, 163); font-weight:400;">.200</span><span style="color:rgb(184, 215, 163); font-weight:400;">.33</span>
+       Socket created...
+       Connected to the server...
+       Enter your message(s): s6cs students
+       Received: s6cs students</span></code></pre>
+</div>
+
+
+                
+         
+</body>
+</html>
